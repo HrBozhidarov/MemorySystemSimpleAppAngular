@@ -27,8 +27,9 @@ export class ErrorInterceptor implements HttpInterceptor {
                     this.identityService.logout();
                     this.shareAuthService.updatedDataSelection(this.identityService.isLoggedIn());
                     this.router.navigate(['/login']);
+
+                    this.toastrService.error('Login In Your Account');
                 }
-                this.toastrService.error('Login In Your Account');
 
                 return throwError(error);
             }))

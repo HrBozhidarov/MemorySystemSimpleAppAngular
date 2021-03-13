@@ -6,29 +6,6 @@ body{font-family:Nunito,arial,sans-serif;}
 .promote{border:1px dashed #ddd;display:flex; height:100%;justify-content: center;flex-direction: column;align-items: stretch;}
 .col-md-3{padding:15px;}
 
-.wrimagecard .wrimagecard-topimage_header .fa, .fas {
-	position: relative;
-    font-size: 35px;
-}
-
-.wrimagecard-topimage_title {
-    padding: 15px 20px;
-    height: 50px;
-    padding-bottom: 0.75rem;
-    position: relative;
-}
-
-.wrimagecard-topimage a {
-    border-bottom: none;
-    text-decoration: none;
-    color: #525c65;
-    transition: color 0.3s ease;
-}
-
-.c-mt-30 {
-    margin-top: 30px;
-}
-
 /*not necessary*/
 .profile-card-2 .card-img-block{
     float:left;
@@ -36,9 +13,11 @@ body{font-family:Nunito,arial,sans-serif;}
     height:150px;
     overflow:hidden;
 }
+
 .profile-card-2 .card-body{
     position:relative;
 }
+
 .profile-card-2 .profile {
   border-radius: 50%;
   position: absolute;
@@ -49,21 +28,26 @@ body{font-family:Nunito,arial,sans-serif;}
   -webkit-transform: translate(-50%, 0%);
   transform: translate(-50%, 0%);
 }
+
 .profile-card-2 h5{
     font-weight:600;
     color:#007bff;
 }
+
 .profile-card-2 .card-text{
     font-weight:300;
     font-size:15px;
 }
+
 .profile-card-2 .icon-block{
     float:left;
     width:100%;
 }
+
 .profile-card-2 .icon-block a{
     text-decoration:none;
 }
+
 .profile-card-2 i {
   display: inline-block;
     font-size: 16px;
@@ -76,6 +60,7 @@ body{font-family:Nunito,arial,sans-serif;}
     border-radius: 50%;
     margin:0 5px;
 }
+
 .profile-card-2 i:hover {
   background-color:#007bff;
   color:#fff;
@@ -98,66 +83,7 @@ button {
     background-color: #8aa6f8fc;
 }
 
-.bg-c-all {
-    background-color: rgba(51, 105, 232, 0.1);
-}
-
-.c-all-align {
-    text-align: center;
-    color: #3369e8;
-}
-
-.bg-c-love {
-    background-color: rgba(213, 15, 37, 0.1);
-}
-
-.c-love-align {
-    text-align: center;
-    color:#d50f25
-}
-
-.bg-c-education {
-    background-color:rgba(187, 120, 36, 0.1);
-}
-
-.c-education-align {
-    text-align: center;
-    color: #BB7824;
-}
-
-.bg-c-travel {
-    background-color: rgba(22, 160, 133, 0.1);
-}
-
-.c-travel-align {
-    text-align: center;
-    color: #16A085;
-}
-
-.bg-c-sport {
-    background-color: rgba(15, 15, 15, 0.1);
-}
-
-.c-sport-align {
-    text-align: center;
-    color: #766945;
-}
-
-.bg-c-nature {
-    background-color: rgba(22, 160, 133, 0.1);
-}
-
-.c-nature-align {
-    text-align: center;
-    color: #16A085;
-}
-
-.bg-c-animal {
-    background-color: rgba(121, 90, 71, 0.1);
-
-}
-
-.c-animal-align {
-    text-align: center;
-    color: #795a47;
+.tumb {
+    color: #fff !important;
+    background-color: #007bff;
 }

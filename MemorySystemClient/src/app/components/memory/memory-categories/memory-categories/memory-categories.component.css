@@ -1,0 +1,101 @@
+.bg-c-all {
+    background-color: rgba(51, 105, 232, 0.1);
+}
+
+.c-all-align {
+    text-align: center;
+    color: #3369e8;
+}
+
+.bg-c-love {
+    background-color: rgba(213, 15, 37, 0.1);
+}
+
+.c-love-align {
+    text-align: center;
+    color:#d50f25
+}
+
+.bg-c-education {
+    background-color:rgba(187, 120, 36, 0.1);
+}
+
+.c-education-align {
+    text-align: center;
+    color: #BB7824;
+}
+
+.bg-c-travel {
+    background-color: rgba(22, 160, 133, 0.1);
+}
+
+.c-travel-align {
+    text-align: center;
+    color: #16A085;
+}
+
+.bg-c-sport {
+    background-color: rgba(15, 15, 15, 0.1);
+}
+
+.c-sport-align {
+    text-align: center;
+    color: #766945;
+}
+
+.bg-c-nature {
+    background-color: rgba(22, 160, 133, 0.1);
+}
+
+.c-nature-align {
+    text-align: center;
+    color: #16A085;
+}
+
+.bg-c-animal {
+    background-color: rgba(121, 90, 71, 0.1);
+
+}
+
+.c-animal-align {
+    text-align: center;
+    color: #795a47;
+}
+
+.wrimagecard {
+    box-shadow: 12px 15px 20px 0px rgba(46,61,73,0.15);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.wrimagecard .wrimagecard-topimage_header .fa, .fas {
+	position: relative;
+    font-size: 35px;
+}
+
+.wrimagecard-topimage_title {
+    padding: 15px 20px;
+    height: 50px;
+    padding-bottom: 0.75rem;
+    position: relative;
+}
+
+.wrimagecard-topimage a {
+    border-bottom: none;
+    text-decoration: none;
+    color: #525c65;
+    transition: color 0.3s ease;
+}
+
+.c-mt-30 {
+    margin-top: 30px;
+}
+
+.wrimagecard-topimage:hover {
+    box-shadow: 2px 4px 8px 0px rgba(46,61,73,0.2);
+}
+
+.click-box {
+    box-shadow: 2px 4px 8px 0px rgb(3 129 237 / 52%);
+    pointer-events: none;
+}

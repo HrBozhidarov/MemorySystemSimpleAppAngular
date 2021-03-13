@@ -15,11 +15,34 @@ export class MyMemoriesComponent implements OnInit {
   constructor(private memoryService: MemoryService, private localStorageService: LocalStorageService) { }
 
   ngOnInit(): void {
-    let key = this.localStorageService.getItem('my-memory-category');
+    let key = this.localStorageService.getItem('my-memory-category-key');
     if (!key) {
       key = 'All'; 
+
+      this.localStorageService.setItem('my-memory-category-key', key);
     }
 
-    this.memoryService.myMemories(key).subscribe(data => { this.pictures = data.data; debugger; });
+    this.memoryService.myMemories(key).subscribe(data => this.pictures = data.data);
+  }
+
+  public setLike(picture: any) {
+    if (!picture || picture.IsLikedFromCurrentUser) {
+      return;
+    }
+
+    const likes = picture.likes;
+
+    this.memoryService.likePicture(picture.id).subscribe((data: any) => {
+      picture.likes = data.data;
+      if (picture.likes > likes) {
+        picture.isLikedFromCurrentUser = true;
+      } else {
+        picture.isLikedFromCurrentUser = false;
+      }
+    })
+  }
+  
+  public getPictureByCategory(category: string) {
+    this.memoryService.myMemories(category).subscribe(data => this.pictures = data.data);
   }
 }

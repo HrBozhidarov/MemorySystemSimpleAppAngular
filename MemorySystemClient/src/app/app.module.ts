@@ -31,6 +31,7 @@ import { MemoryService } from './services/memory/memory.service';
 import { ShareAuthService } from './share/services/share-auth-service';
 import { IdentityService } from './services/identity/identity.service';
 import { LocalStorageService } from './share/services/local-storage.service';
+import { MemoryCategoriesComponent } from './components/memory/memory-categories/memory-categories/memory-categories.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { LocalStorageService } from './share/services/local-storage.service';
     HeaderComponent,
     MemoryCreateComponent,
     MemoryDetailsComponent,
-    MyMemoriesComponent
+    MyMemoriesComponent,
+    MemoryCategoriesComponent
   ],
   imports: [
     BrowserModule,

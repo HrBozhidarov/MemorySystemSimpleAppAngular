@@ -1,75 +1,6 @@
 <div class="row">
     <div class="col-md-3">
-        <div class="wrimagecard wrimagecard-topimage c-mt-30">
-            <a href="#">
-                <div class="wrimagecard-topimage_header bg-c-all">
-                    <div class="c-all-align"><i class ="fa fa-globe"></i></div>
-                </div>
-                <div class="wrimagecard-topimage_title">
-                    <h4>ALL</h4>
-                </div>
-            </a>
-        </div>
-        <div class="wrimagecard wrimagecard-topimage c-mt-30">
-            <a href="#">
-                <div class="wrimagecard-topimage_header bg-c-love">
-                    <div class="c-love-align"><i class = "fas fa-heart"></i></div>
-                </div>
-                <div class="wrimagecard-topimage_title">
-                    <h4>Love</h4>
-                </div>
-            </a>
-        </div>
-        <div class="wrimagecard wrimagecard-topimage c-mt-30">
-            <a href="#">
-                <div class="wrimagecard-topimage_header bg-c-education">
-                    <div class="c-education-align"><i class="fas fa-graduation-cap"></i></div>
-                </div>
-                <div class="wrimagecard-topimage_title">
-                    <h4>Education</h4>
-                </div>
-            </a>
-        </div>
-        <div class="wrimagecard wrimagecard-topimage c-mt-30">
-            <a href="#">
-                <div class="wrimagecard-topimage_header" style="background-color: rgba(250, 188, 9, 0.1)">
-                    <div style="text-align: center;"><i class = "fas fa-plane" style="color:#fabc09"></i></div>
-                </div>
-                <div class="wrimagecard-topimage_title">
-                    <h4>Travel</h4>
-                </div>
-            </a>
-        </div>
-        <div class="wrimagecard wrimagecard-topimage c-mt-30">
-            <a href="#">
-                <div class="wrimagecard-topimage_header bg-c-sport">
-                    <div class="c-sport-align"><i class = "fas fa-dumbbell"></i></div>
-                </div>
-                <div class="wrimagecard-topimage_title">
-                    <h4>Sport</h4>
-                </div>
-            </a>
-        </div>
-        <div class="wrimagecard wrimagecard-topimage c-mt-30">
-            <a href="#">
-                <div class="wrimagecard-topimage_header bg-c-nature">
-                    <div class="c-nature-align"><i class = "fas fa-leaf"></i></div>
-                </div>
-                <div class="wrimagecard-topimage_title">
-                    <h4>Nature</h4>
-                </div>
-            </a>
-        </div>
-        <div class="wrimagecard wrimagecard-topimage c-mt-30">
-            <a href="#">
-                <div class="wrimagecard-topimage_header bg-c-animal">
-                    <div class="c-animal-align"><i class="fas fa-paw"></i></div>
-                </div>
-                <div class="wrimagecard-topimage_title">
-                    <h4>Animal</h4>
-                </div>
-            </a>
-        </div>
+        <app-memory-categories (categoryChange)="getPictureByCategory($event)"></app-memory-categories>
     </div>
     <div class="col-md-9">
         <div class="section">
@@ -82,16 +13,16 @@
                         *ngFor="let picture of pictures | paginate: { itemsPerPage: 8, currentPage: page }">
                         <div class="card profile-card-2 wrimagecard wrimagecard-topimage h-100">
                             <div class="card-img-block">
-                                <img class="img-fluid"
-                                    src="{{picture.url}}"
-                                    alt="Card image cap" />
+                                <img class="img-fluid" src="{{picture.url}}" alt="Card image cap" />
                             </div>
                             <div class="card-body pt-5">
-                                <img src="{{picture.ownerProfilePicture}}" alt="profile-image"
-                                    class="profile" />
+                                <img src="{{picture.ownerProfilePicture}}" alt="profile-image" class="profile" />
                                 <h5 class="card-title">Published By: {{picture.owner}}</h5>
                                 <div class="icon-block">
-                                    <a href="#"> <i class="fa fa-thumbs-up"></i><span id="likes"></span></a>
+                                    <a (click)="setLike(picture)"> 
+                                        <i [ngClass]="{ 'tumb': picture.isLikedFromCurrentUser }" 
+                                           class="fa fa-thumbs-up"></i><span id="likes">
+                                        </span>{{picture.likes}}</a>
                                     <a href="#"> <i class="fa fa-heart"></i><span id="favorites"></span></a>
                                 </div>
                                 <div class="row">
@@ -101,7 +32,7 @@
                                     <div class="col-md-6 p-3">
                                         <button class="btn btn-primary mt-2 p-1">View Profile</button>
                                     </div>
-                                </div>                      
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -110,8 +41,6 @@
         </div>
     </div>
 </div>
-
-
 <div>
     <pagination-controls (pageChange)='page=$event'></pagination-controls>
 </div>

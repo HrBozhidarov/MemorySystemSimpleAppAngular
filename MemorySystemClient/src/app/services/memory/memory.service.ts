@@ -9,6 +9,7 @@ import { URLS } from 'src/app/constants/constants';
 export class MemoryService {
   private readonly createUrl = URLS.DOMAIN_URL + 'pictures/create';
   private readonly myMemoriesUrl = URLS.DOMAIN_URL + 'users/myMemories';
+  private readonly likePictureUrl = URLS.DOMAIN_URL + 'pictures/like?id=';
 
   constructor(private http: HttpClient) { }
 
@@ -19,8 +20,11 @@ export class MemoryService {
   public myMemories(category: string): Observable<any> {
     let params = new HttpParams();
     params = params.append('category', category);
-    debugger;
-
+    
     return this.http.get(`${this.myMemoriesUrl}`, { params: params });
+  }
+
+  public likePicture(id: number) {
+    return this.http.post(this.likePictureUrl + id, null);
   }
 }

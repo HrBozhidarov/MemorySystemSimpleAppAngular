@@ -1,11 +1,14 @@
 ﻿namespace MemorySystemApp.Controllers
 {
-    using MemorySystemApp.Models.pictures;
-    using MemorySystemApp.Infrastructures;
+    using System.Threading.Tasks;
 
-    using Microsoft.AspNetCore.Mvc;
+    using MemorySystemApp.Infrastructures;
+    using MemorySystemApp.Models.pictures;
+    using MemorySystemApp.Services;
     using MemorySystemApp.Services.Identity;
+
     using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
 
     [Authorize]
     public class PicturesController : ApiController
@@ -30,6 +33,20 @@
             }
 
             return Ok();
+        }
+
+        [HttpPost]
+        [Route(nameof(Like))]
+        [Authorize]
+        public async Task<ActionResult<Result<bool>>> Like(int id)
+        {
+            var result = await this.picturesService.LikeAsync(id, this.User.GetUserId());
+            if (result.IfHaveError)
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result);
         }
 
         [HttpGet]

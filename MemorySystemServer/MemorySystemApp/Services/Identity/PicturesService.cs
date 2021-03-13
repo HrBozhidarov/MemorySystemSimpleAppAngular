@@ -48,6 +48,33 @@
             return true;
         }
 
+        public async Task<Result<int>> LikeAsync(int id, string userId)
+        {
+            var picture = await this.db.Pictures.Include(l => l.Likes).FirstOrDefaultAsync(p => p.Id == id);
+            if (picture == null)
+            {
+                return Result<int>.Error("picture not found");
+            }
+
+            if (picture.Likes.Any(u => u.UserId == userId))
+            {
+                picture.Likes.Remove(picture.Likes.First(p => p.UserId == userId));
+            }
+            else
+            {
+                picture.Likes.Add(
+                new Like
+                {
+                    UserId = userId,
+                    PictureId = id,
+                });
+            }
+
+            await this.db.SaveChangesAsync();
+
+            return Result<int>.Success(picture.Likes.Count);
+        }
+
         //public async Task<Result<IEnumerable<PictureModel>>> GetAll()
         //{
         //    var user = this.db.Users.Include(p => p.Pictures).FirstOrDefault(u => u.Id == userId);

@@ -29,6 +29,7 @@ export class NavigationBarComponent {
   public logout() {
     this.identityService.logout();
     this.localStorageService.removeItem('user-profile-picture');
+    this.localStorageService.removeItem('my-memory-category-key');
     this.shareAuthService.updatedDataSelection(this.identityService.isLoggedIn());
     this.router.navigate(['/home']);
   }

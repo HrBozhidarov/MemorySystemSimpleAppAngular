@@ -30,7 +30,7 @@
 
         public IEnumerable<Comment> Comments { get; set; }
 
-        public IEnumerable<Like> Likes { get; set; }
+        public ICollection<Like> Likes { get; set; }
 
         public IEnumerable<Favorite> Favorites { get; set; }
     }
