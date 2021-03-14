@@ -12,8 +12,9 @@
             this.Pictures = new HashSet<Picture>();
             this.Likes = new HashSet<Like>();
             this.Favorites = new HashSet<Favorite>();
+            this.UserRoles = new HashSet<UserRole>();
         }
-
+  
         public string ProfileUrl { get; set; }
 
         public IEnumerable<Comment> Comments { get; set; }
@@ -23,5 +24,7 @@
         public IEnumerable<Like> Likes { get; set; }
 
         public IEnumerable<Favorite> Favorites { get; set; }
+
+        public ICollection<UserRole> UserRoles { get; set; }
     }
 }

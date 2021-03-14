@@ -29,6 +29,8 @@ export class ErrorInterceptor implements HttpInterceptor {
                     this.router.navigate(['/login']);
 
                     this.toastrService.error('Login In Your Account');
+                } else if(error.status === 403) {
+                  this.toastrService.error('You don`t have permissions!');
                 }
 
                 return throwError(error);

@@ -9,10 +9,12 @@
 
     using AutoMapper;
 
+    using MemorySystemApp.Data;
     using MemorySystemApp.Data.Models;
     using MemorySystemApp.Models.Identity;
 
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Options;
     using Microsoft.IdentityModel.Tokens;
 
@@ -20,14 +22,20 @@
     {
         private const string DefaultProfileUrl = "https://cdn1.iconfinder.com/data/icons/technology-devices-2/100/Profile-512.png";
 
+        private readonly MemorySystemDbContext db;
         private readonly UserManager<User> userManager;
+        private readonly RoleManager<Role> roleManager;
         private readonly ApplicationSettings applicationSettings;
 
         public IdentityService(
+            MemorySystemDbContext db,
             UserManager<User> userManager,
+            RoleManager<Role> roleManager,
             IOptions<ApplicationSettings> options)
         {
+            this.db = db;
             this.userManager = userManager;
+            this.roleManager = roleManager;
             this.applicationSettings = options.Value;
         }
 
@@ -38,7 +46,7 @@
                 throw new ArgumentNullException(nameof(model));
             }
 
-            var user = await this.userManager.FindByNameAsync(model.Username);
+            var user = await userManager.FindByNameAsync(model.Username);
             if (user == null)
             {
                 return Result<LoginModel>.Error("Username or password are invalid");
@@ -55,11 +63,27 @@
                 {
                     ProfileUrl = user.ProfileUrl,
                     Token = this.GenerateJwtToken(user),
+                    Role = (await this.db.UserRoles.Include(r => r.Role).FirstOrDefaultAsync(r => r.UserId == user.Id))?.Role?.Name,
                 });
         }
 
         public async Task<Result<User>> Register(RegisterUserRequestModel model)
         {
+            if (await this.userManager.FindByEmailAsync(model.Email) != null ||
+                await this.userManager.FindByNameAsync(model.Username) != null)
+            {
+                return Result<User>.Error("Email or username already exist.");
+            }
+
+            var isRoleExist = await this.roleManager.RoleExistsAsync(Constant.User);
+            if (!isRoleExist)
+            {
+                var role = new Role();
+                role.Name = Constant.User;
+
+                await this.roleManager.CreateAsync(role);
+            }
+
             if (model == null)
             {
                 throw new NullReferenceException(nameof(model));
@@ -77,12 +101,14 @@
             var user = Mapper.Map<User>(model);
 
             var identityResult = await this.userManager.CreateAsync(user, model.Password);
+            if (identityResult.Succeeded)
+            {
+                await this.userManager.AddToRoleAsync(user, Constant.User);
 
-            var errors = identityResult.Errors.Select(e => e.Description);
+                return Result<User>.Success(user);
+            }
 
-            return identityResult.Succeeded
-                ? Result<User>.Success(user)
-                : Result<User>.Error(errors.First());
+            return Result<User>.Error(identityResult.Errors.Select(e => e.Description).First());
         }
 
         private string GenerateJwtToken(User user)
