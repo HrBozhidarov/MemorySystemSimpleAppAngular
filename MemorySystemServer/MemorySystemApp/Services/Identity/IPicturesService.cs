@@ -14,5 +14,7 @@
         Task<Result<IEnumerable<PictureModel>>> GetUserPictures(string currentUserId, string userId);
 
         Task<Result<int>> LikeAsync(int id, string userId);
+
+        Task Test();
     }
 }

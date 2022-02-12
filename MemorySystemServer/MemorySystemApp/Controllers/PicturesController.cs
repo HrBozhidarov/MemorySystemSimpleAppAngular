@@ -10,7 +10,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    [Authorize]
+    //[Authorize]
     public class PicturesController : ApiController
     {
         private readonly IPicturesService picturesService;
@@ -51,11 +51,11 @@
 
         [HttpGet]
         [Route(nameof(Details))]
-        [Authorize]
-        public ActionResult Details(int id)
+        //[Authorize]
+        public async Task<ActionResult> Details(int id)
         {
-
-            return null;
+            await this.picturesService.Test();
+            return Ok();
         }
     }
 }

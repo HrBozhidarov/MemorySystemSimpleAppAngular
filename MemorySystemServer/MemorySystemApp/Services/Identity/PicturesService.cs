@@ -75,6 +75,15 @@
             return Result<int>.Success(picture.Likes.Count);
         }
 
+        public async Task Test()
+        {
+            var a = this.db.Pictures.AsAsyncEnumerable();
+            await foreach (var item in a)
+            {
+
+            }
+        }
+
         //public async Task<Result<IEnumerable<PictureModel>>> GetAll()
         //{
         //    var user = this.db.Users.Include(p => p.Pictures).FirstOrDefault(u => u.Id == userId);
