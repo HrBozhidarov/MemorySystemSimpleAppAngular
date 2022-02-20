@@ -35,11 +35,14 @@
         {
             AutoMapperConfig.RegisterMappings(Assembly.GetExecutingAssembly());
 
-            app.UseRouting()
-            .UseCors(opt => opt
+            //app.UseHttpsRedirection();
+
+            app.UseCors(opt => opt
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
-                .AllowAnyHeader())
+                .AllowAnyHeader());
+
+            app.UseRouting()
             .UseAuthentication()
             .UseAuthorization()
             .UseEndpoints(endpoints => endpoints.MapControllers())

@@ -69,24 +69,15 @@
 
         public async Task<Result<User>> Register(RegisterUserRequestModel model)
         {
+            if (model == null)
+            {
+                throw new NullReferenceException(nameof(model));
+            }
+
             if (await this.userManager.FindByEmailAsync(model.Email) != null ||
                 await this.userManager.FindByNameAsync(model.Username) != null)
             {
                 return Result<User>.Error("Email or username already exist.");
-            }
-
-            var isRoleExist = await this.roleManager.RoleExistsAsync(Constant.User);
-            if (!isRoleExist)
-            {
-                var role = new Role();
-                role.Name = Constant.User;
-
-                await this.roleManager.CreateAsync(role);
-            }
-
-            if (model == null)
-            {
-                throw new NullReferenceException(nameof(model));
             }
 
             if (!string.IsNullOrWhiteSpace(model.ProfileUrl) && !Uri.IsWellFormedUriString(model.ProfileUrl, UriKind.RelativeOrAbsolute))
@@ -98,17 +89,28 @@
                 model.ProfileUrl = DefaultProfileUrl;
             }
 
+            var isRoleExist = await this.roleManager.RoleExistsAsync(Constant.User);
+            if (!isRoleExist)
+            {
+                var role = new Role
+                {
+                    Name = Constant.User,
+                };
+
+                await this.roleManager.CreateAsync(role);
+            }
+
             var user = Mapper.Map<User>(model);
 
             var identityResult = await this.userManager.CreateAsync(user, model.Password);
-            if (identityResult.Succeeded)
+            if (!identityResult.Succeeded)
             {
-                await this.userManager.AddToRoleAsync(user, Constant.User);
-
-                return Result<User>.Success(user);
+                return Result<User>.Error(identityResult.Errors.Select(e => e.Description).First());
             }
 
-            return Result<User>.Error(identityResult.Errors.Select(e => e.Description).First());
+            await this.userManager.AddToRoleAsync(user, Constant.User);
+
+            return Result<User>.Success(user);
         }
 
         private string GenerateJwtToken(User user)

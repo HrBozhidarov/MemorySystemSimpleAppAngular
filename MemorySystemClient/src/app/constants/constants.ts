@@ -1,3 +1,3 @@
 export const URLS = {
-  DOMAIN_URL: 'https://localhost:44353/',
+  DOMAIN_URL: 'https://localhost:59512/',
 }
