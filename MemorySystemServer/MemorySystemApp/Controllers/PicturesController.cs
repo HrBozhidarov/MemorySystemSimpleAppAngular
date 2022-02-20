@@ -3,17 +3,18 @@
     using System.Threading.Tasks;
 
     using MemorySystemApp.Infrastructures;
-    using MemorySystemApp.Models.pictures;
+    using MemorySystemApp.Models.Pictures;
     using MemorySystemApp.Services;
     using MemorySystemApp.Services.Identity;
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    //[Authorize]
+    // [Authorize]
     public class PicturesController : ApiController
     {
         private readonly IPicturesService picturesService;
+
         public PicturesController(IPicturesService picturesService)
         {
             this.picturesService = picturesService;
@@ -29,10 +30,10 @@
             var isCreated = this.picturesService.Create(model, userId);
             if (!isCreated)
             {
-                return BadRequest();
+                return this.BadRequest();
             }
 
-            return Ok();
+            return this.Ok();
         }
 
         [HttpPost]
@@ -43,19 +44,19 @@
             var result = await this.picturesService.LikeAsync(id, this.User.GetUserId());
             if (result.IfHaveError)
             {
-                return BadRequest(result);
+                return this.BadRequest(result);
             }
 
-            return Ok(result);
+            return this.Ok(result);
         }
 
+        // [Authorize]
         [HttpGet]
         [Route(nameof(Details))]
-        //[Authorize]
         public async Task<ActionResult> Details(int id)
         {
             await this.picturesService.Test();
-            return Ok();
+            return this.Ok();
         }
     }
 }

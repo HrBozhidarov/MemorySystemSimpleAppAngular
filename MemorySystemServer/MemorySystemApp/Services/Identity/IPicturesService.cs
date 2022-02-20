@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using MemorySystemApp.Models.pictures;
+    using MemorySystemApp.Models.Pictures;
 
     public interface IPicturesService
     {

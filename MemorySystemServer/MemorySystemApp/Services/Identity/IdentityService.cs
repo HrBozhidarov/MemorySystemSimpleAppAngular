@@ -46,7 +46,7 @@
                 throw new ArgumentNullException(nameof(model));
             }
 
-            var user = await userManager.FindByNameAsync(model.Username);
+            var user = await this.userManager.FindByNameAsync(model.Username);
             if (user == null)
             {
                 return Result<LoginModel>.Error("Username or password are invalid");
@@ -124,7 +124,7 @@
                     new Claim(ClaimTypes.Name, user.Email),
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
             };
 
             var token = tokenHandler.CreateToken(tokenDescriptor);

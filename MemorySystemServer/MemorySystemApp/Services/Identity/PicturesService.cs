@@ -11,7 +11,7 @@
 
     using MemorySystemApp.Data;
     using MemorySystemApp.Data.Models;
-    using MemorySystemApp.Models.pictures;
+    using MemorySystemApp.Models.Pictures;
 
     using Microsoft.EntityFrameworkCore;
 
@@ -43,7 +43,7 @@
 
             this.db.Pictures.Add(entity);
 
-            db.SaveChanges();
+            this.db.SaveChanges();
 
             return true;
         }
@@ -80,33 +80,32 @@
             var a = this.db.Pictures.AsAsyncEnumerable();
             await foreach (var item in a)
             {
-
             }
         }
 
-        //public async Task<Result<IEnumerable<PictureModel>>> GetAll()
-        //{
-        //    var user = this.db.Users.Include(p => p.Pictures).FirstOrDefault(u => u.Id == userId);
-        //    if (user == null)
-        //    {
-        //        return Result<IEnumerable<PictureModel>>.Failure(new[] { "User not found" });
-        //    }
+        /*public async Task<Result<IEnumerable<PictureModel>>> GetAll()
+        {
+            var user = this.db.Users.Include(p => p.Pictures).FirstOrDefault(u => u.Id == userId);
+            if (user == null)
+            {
+                return Result<IEnumerable<PictureModel>>.Failure(new[] { "User not found" });
+            }
 
-        //    var pictures = Mapper.Map<IEnumerable<PictureModel>>(user.Pictures);
+            var pictures = Mapper.Map<IEnumerable<PictureModel>>(user.Pictures);
 
-        //    var pictureIds = pictures.Select(p => p.Id);
+            var pictureIds = pictures.Select(p => p.Id);
 
-        //    var likesForPicures = await db.Likes
-        //        .Where(l => l.UserId == currentUserId && pictureIds.Contains(l.PictureId))
-        //        .ToListAsync();
+            var likesForPicures = await db.Likes
+                .Where(l => l.UserId == currentUserId && pictureIds.Contains(l.PictureId))
+                .ToListAsync();
 
-        //    foreach (var picture in pictures)
-        //    {
-        //        picture.IsLikedFromCurrentUser = likesForPicures.Any(lp => lp.UserId == currentUserId && lp.PictureId == picture.Id);
-        //    }
+            foreach (var picture in pictures)
+            {
+                picture.IsLikedFromCurrentUser = likesForPicures.Any(lp => lp.UserId == currentUserId && lp.PictureId == picture.Id);
+            }
 
-        //    return Result<IEnumerable<PictureModel>>.SuccessWith(pictures);
-        //}
+            return Result<IEnumerable<PictureModel>>.SuccessWith(pictures);
+        }*/
 
         public async Task<Result<IEnumerable<PictureModel>>> GetOwnPictures(string userId, string category)
         {
@@ -122,39 +121,38 @@
 
             return Result<IEnumerable<PictureModel>>.Success(userPictures);
 
-            //Func<Picture, bool> func = p => p.Category.Type == categoryType;
+            /*Func<Picture, bool> func = p => p.Category.Type == categoryType;
 
-            //if (categoryType == CategoryType.All)
-            //{
-            //    func = p => true;
-            //}
+            if (categoryType == CategoryType.All)
+            {
+                func = p => true;
+            }
 
-            //var user = this.db.Users.Include(p => p.Pictures).ThenInclude(c => c.Category).FirstOrDefault(u => u.Id == userId);
-            //if (user == null)
-            //{
-            //    return Result<IEnumerable<PictureModel>>.Error("User not found");
-            //}
+            var user = this.db.Users.Include(p => p.Pictures).ThenInclude(c => c.Category).FirstOrDefault(u => u.Id == userId);
+            if (user == null)
+            {
+                return Result<IEnumerable<PictureModel>>.Error("User not found");
+            }
 
-            //var pictures = Mapper.Map<IEnumerable<PictureModel>>(user.Pictures.Where(func));
+            var pictures = Mapper.Map<IEnumerable<PictureModel>>(user.Pictures.Where(func));
 
-            //var pictureIds = pictures.Select(p => p.Id);
+            var pictureIds = pictures.Select(p => p.Id);
 
-            //var likesForPicures = await db.Likes
-            //    .Where(l => l.UserId == userId && pictureIds.Contains(l.PictureId))
-            //    .ToListAsync();
+            var likesForPicures = await db.Likes
+                .Where(l => l.UserId == userId && pictureIds.Contains(l.PictureId))
+                .ToListAsync();
 
-            //foreach (var picture in pictures)
-            //{
-            //    picture.IsLikedFromCurrentUser = likesForPicures.Any(lp => lp.PictureId == picture.Id);
-            //}
+            foreach (var picture in pictures)
+            {
+                picture.IsLikedFromCurrentUser = likesForPicures.Any(lp => lp.PictureId == picture.Id);
+            }
 
-            //return Result<IEnumerable<PictureModel>>.Success(pictures);
+            return Result<IEnumerable<PictureModel>>.Success(pictures);*/
         }
 
         public async Task<Result<IEnumerable<PictureModel>>> GetUserPictures(string currentUserId, string userId)
         {
             // check for both users
-
             var user = this.db.Users.Include(p => p.Pictures).FirstOrDefault(u => u.Id == currentUserId);
             if (user == null)
             {
@@ -165,7 +163,7 @@
 
             var pictureIds = pictures.Select(p => p.Id);
 
-            var likesForPicures = await db.Likes
+            var likesForPicures = await this.db.Likes
                 .Where(l => l.UserId == userId && pictureIds.Contains(l.PictureId))
                 .ToListAsync();
 

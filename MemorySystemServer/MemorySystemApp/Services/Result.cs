@@ -5,10 +5,10 @@
 
     public class Result
     {
-        public string ErrorMessage { get; protected set; }
-
         [JsonIgnore]
         public static Result Success => new Result();
+
+        public string ErrorMessage { get; protected set; }
 
         [JsonIgnore]
         public bool IfHaveError => !string.IsNullOrWhiteSpace(this.ErrorMessage);
@@ -24,7 +24,9 @@
         }
     }
 
+#pragma warning disable SA1402 // File may only contain a single type
     public class Result<TData> : Result
+#pragma warning restore SA1402 // File may only contain a single type
     {
         public TData Data { get; private set; }
 

@@ -6,7 +6,7 @@
     {
         public IActionResult GET()
         {
-            return Ok();
+            return this.Ok();
         }
     }
 }

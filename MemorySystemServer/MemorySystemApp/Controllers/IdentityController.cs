@@ -10,6 +10,7 @@
     public class IdentityController : ApiController
     {
         private readonly IIdentityService identityService;
+
         public IdentityController(IIdentityService identityService)
         {
             this.identityService = identityService;
@@ -22,10 +23,10 @@
             var result = await this.identityService.Register(model);
             if (result.IfHaveError)
             {
-                return BadRequest(result);
+                return this.BadRequest(result);
             }
 
-            return Ok(result);
+            return this.Ok(result);
         }
 
         [HttpPost]
@@ -35,10 +36,10 @@
             var result = await this.identityService.Login(model);
             if (result.IfHaveError)
             {
-                return BadRequest(result);
+                return this.BadRequest(result);
             }
 
-            return Ok(result);
+            return this.Ok(result);
         }
     }
 }

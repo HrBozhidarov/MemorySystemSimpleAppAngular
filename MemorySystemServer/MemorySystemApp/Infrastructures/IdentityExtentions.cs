@@ -4,7 +4,7 @@
 
     public static class IdentityExtentions
     {
-        public static string GetUserId(this ClaimsPrincipal principal) 
+        public static string GetUserId(this ClaimsPrincipal principal)
             => principal.FindFirstValue(ClaimTypes.NameIdentifier);
     }
 }

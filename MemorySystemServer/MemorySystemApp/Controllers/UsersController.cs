@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
 
     using MemorySystemApp.Infrastructures;
-    using MemorySystemApp.Models.pictures;
+    using MemorySystemApp.Models.Pictures;
     using MemorySystemApp.Services;
     using MemorySystemApp.Services.Identity;
 
@@ -21,11 +21,9 @@
             this.picturesService = picturesService;
         }
 
-        //public ActionResult Prifile(string userId)
-        //{
-
-        //}
-
+        // public ActionResult Prifile(string userId)
+        // {
+        // }
         [HttpGet]
         [Route(nameof(MyMemories))]
         public async Task<ActionResult<Result<IEnumerable<PictureModel>>>> MyMemories(string category)
@@ -33,7 +31,7 @@
             var pictures = await this.picturesService.GetOwnPictures(this.User.GetUserId(), category);
             if (pictures.IfHaveError)
             {
-                return NotFound(pictures);
+                return this.NotFound(pictures);
             }
 
             return pictures;

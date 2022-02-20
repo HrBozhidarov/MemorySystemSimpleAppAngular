@@ -1,9 +1,8 @@
-namespace MemorySystemApp
+﻿namespace MemorySystemApp
 {
     using System.Reflection;
 
     using MemorySystem.Infrastructure.AutomapperSettings;
-
     using MemorySystemApp.Data;
     using MemorySystemApp.Infrastructures;
 
@@ -17,7 +16,7 @@ namespace MemorySystemApp
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -25,7 +24,7 @@ namespace MemorySystemApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<MemorySystemDbContext>(options => options
-                .UseSqlServer(Configuration.GetConnectionString("DefaultConnection")))
+                .UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")))
                 .AddIdentity()
                 .JwtAuthentication(services.GetApplicationSettings(this.Configuration))
                 .AddServices()

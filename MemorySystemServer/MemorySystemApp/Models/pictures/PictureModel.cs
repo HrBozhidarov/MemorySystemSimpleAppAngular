@@ -1,4 +1,4 @@
-﻿namespace MemorySystemApp.Models.pictures
+﻿namespace MemorySystemApp.Models.Pictures
 {
     using System.Linq;
 

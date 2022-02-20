@@ -14,7 +14,7 @@
             this.Favorites = new HashSet<Favorite>();
             this.UserRoles = new HashSet<UserRole>();
         }
-  
+
         public string ProfileUrl { get; set; }
 
         public IEnumerable<Comment> Comments { get; set; }
