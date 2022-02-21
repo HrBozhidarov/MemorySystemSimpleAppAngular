@@ -18,39 +18,43 @@ export class MemoryCreateComponent implements OnInit {
   public categoryKeys = [];
 
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private memoryService: MemoryService,
     private router: Router,
     private toastrService: ToastrService) { }
 
-  ngOnInit() {    
+  ngOnInit() {
     this.categoryKeys = Object.keys(CategoryType).reduce((arr, key) => {
       if (!arr.includes(key)) {
         arr.push(CategoryType[key]);
       }
       return arr;
     }, []);
-    
+
     this.memoryForm = this.fb.group({
       url: ['', Validators.required],
       description: [''],
       type: [CategoryType.Love]
     });
   }
-  
+
   get f() { return this.memoryForm.controls; }
 
   public onMemory() {
     this.submitted = true;
 
     if (this.memoryForm.invalid) {
-        return;
+      return;
     }
 
-    this.memoryService.create(this.memoryForm.value).subscribe(data => {
-      this.toastrService.success('Successfully created picture.');
+    this.memoryService.create(this.memoryForm.value).subscribe(
+      data => {
+        this.toastrService.success('Successfully created picture.');
 
-      this.router.navigate(['/home']);
-    });
+        this.router.navigate(['/home']);
+      },
+      error => {
+        this.toastrService.error(error?.error?.errorMessage);
+      });
   }
 }

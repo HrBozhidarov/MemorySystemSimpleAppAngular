@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 import { IdentityService } from 'src/app/services/identity/identity.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -12,10 +13,11 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
   public registerForm: FormGroup;
   public submitted: boolean = false;
-  
+
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private identityService: IdentityService,
+    private toastrService: ToastrService,
     private router: Router) { }
 
   ngOnInit() {
@@ -33,11 +35,15 @@ export class RegisterComponent implements OnInit {
     this.submitted = true;
 
     if (this.registerForm.invalid) {
-        return;
+      return;
     }
 
-    this.identityService.register(this.registerForm.value).subscribe(() => {
-      this.router.navigate(['/login']);
-    })
+    this.identityService.register(this.registerForm.value).subscribe(
+      () => {
+        this.router.navigate(['/login']);
+      },
+      error => {
+        this.toastrService.error(error?.error?.errorMessage);
+      })
   }
 }

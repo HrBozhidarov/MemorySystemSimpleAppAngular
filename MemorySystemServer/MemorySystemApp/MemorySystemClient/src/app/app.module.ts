@@ -7,8 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/profile/login/login.component';
+import { RegisterComponent } from './components/profile/register/register.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -32,6 +32,7 @@ import { ShareAuthService } from './share/services/share-auth-service';
 import { IdentityService } from './services/identity/identity.service';
 import { LocalStorageService } from './share/services/local-storage.service';
 import { MemoryCategoriesComponent } from './components/memory/memory-categories/memory-categories.component';
+import { NonAuthorizedGuard } from './guards/nonAuthorized.guard';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { MemoryCategoriesComponent } from './components/memory/memory-categories
     MemoryService,
     LocalStorageService,
     AuthorizedGuard,
+    NonAuthorizedGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
