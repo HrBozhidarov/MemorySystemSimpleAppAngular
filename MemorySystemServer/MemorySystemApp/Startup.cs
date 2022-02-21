@@ -28,6 +28,7 @@
                 .AddIdentity()
                 .JwtAuthentication(services.GetApplicationSettings(this.Configuration))
                 .AddServices()
+                .AddCors()
                 .AddControllers();
         }
 
@@ -43,10 +44,10 @@
                 .AllowAnyHeader());
 
             app.UseRouting()
-            .UseAuthentication()
-            .UseAuthorization()
-            .UseEndpoints(endpoints => endpoints.MapControllers())
-            .Initialize();
+                .UseAuthentication()
+                .UseAuthorization()
+                .UseEndpoints(endpoints => endpoints.MapControllers())
+                .Initialize();
         }
     }
 }

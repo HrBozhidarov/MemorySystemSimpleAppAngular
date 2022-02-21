@@ -24,14 +24,14 @@ import { ToastrModule } from 'ngx-toastr';
 import {NgxPaginationModule} from 'ngx-pagination'; 
 
 import { MemoryCreateComponent } from './components/memory/memory-create/memory-create.component';
-import { MemoryDetailsComponent } from './components/memory/memory-details/memory-details/memory-details.component';
-import { MyMemoriesComponent } from './components/memory/my-memories/my-memories/my-memories.component';
+import { MemoryDetailsComponent } from './components/memory/memory-details/memory-details.component';
+import { MyMemoriesComponent } from './components/memory/my-memories/my-memories.component';
 
 import { MemoryService } from './services/memory/memory.service';
 import { ShareAuthService } from './share/services/share-auth-service';
 import { IdentityService } from './services/identity/identity.service';
 import { LocalStorageService } from './share/services/local-storage.service';
-import { MemoryCategoriesComponent } from './components/memory/memory-categories/memory-categories/memory-categories.component';
+import { MemoryCategoriesComponent } from './components/memory/memory-categories/memory-categories.component';
 
 @NgModule({
   declarations: [

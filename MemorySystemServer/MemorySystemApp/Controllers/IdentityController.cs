@@ -23,10 +23,10 @@
             var result = await this.identityService.Register(model);
             if (result.IfHaveError)
             {
-                return this.BadRequest(result);
+                return this.BadRequest(result.ErrorMessage);
             }
 
-            return this.Ok(result);
+            return this.Ok();
         }
 
         [HttpPost]

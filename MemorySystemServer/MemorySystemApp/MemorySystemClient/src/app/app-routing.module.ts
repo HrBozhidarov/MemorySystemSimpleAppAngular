@@ -7,7 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 
 import { AuthorizedGuard } from './guards/authorized.guard';
 import { MemoryCreateComponent } from './components/memory/memory-create/memory-create.component';
-import { MyMemoriesComponent } from './components/memory/my-memories/my-memories/my-memories.component';
+import { MyMemoriesComponent } from './components/memory/my-memories/my-memories.component';
 
 const routes: Routes = [
   {

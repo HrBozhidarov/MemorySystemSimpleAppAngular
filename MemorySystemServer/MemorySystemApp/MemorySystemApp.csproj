@@ -29,8 +29,4 @@
     <ProjectReference Include="..\MemorySystem\MemorySystem.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="MemorySystemClient\" />
-  </ItemGroup>
-
 </Project>
