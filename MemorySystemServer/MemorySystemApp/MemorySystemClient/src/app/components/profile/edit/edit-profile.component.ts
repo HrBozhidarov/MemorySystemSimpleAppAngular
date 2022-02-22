@@ -1,27 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
 
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { UserService } from '../../../services/users/user.service';
+import { AccountService } from '../../../services/account/account.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
-  public registerForm: FormGroup;
+export class EditProfileComponent implements OnInit {
+  public editForm: FormGroup;
   public submitted: boolean = false;
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService,
+    private accountService: AccountService,
     private toastrService: ToastrService,
     private router: Router) { }
 
   ngOnInit() {
-    this.registerForm = this.fb.group({
+
+
+    this.editForm = this.fb.group({
       username: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(3)]],
@@ -29,18 +31,18 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  get f() { return this.registerForm.controls; }
+  get f() { return this.editForm.controls; }
 
   public onRegister() {
     this.submitted = true;
 
-    if (this.registerForm.invalid) {
+    if (this.editForm.invalid) {
       return;
     }
 
-    this.userService.register(this.registerForm.value).subscribe(
+    this.accountService.register(this.editForm.value).subscribe(
       () => {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/home']);
       },
       error => {
         this.toastrService.error(error?.error?.errorMessage);

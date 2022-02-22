@@ -1,0 +1,62 @@
+<div class="row mt-5 mb-5">
+  <div class="col-md-6 mb-4 mx-auto">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="text-center default-text py-3"><i class="fa fa-registered"></i> Register:</h3>
+        <form [formGroup]="editForm" (ngSubmit)="onRegister()">
+          <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input formControlName="email"
+                   type="text"
+                   class="form-control"
+                   id="inputEmail"
+                   placeholder="Email"
+                   [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+            <div *ngIf="submitted && f.email.errors"
+                 class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">Email is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputUsername">Username</label>
+            <input formControlName="username"
+                   type="text"
+                   class="form-control"
+                   id="inputUsername"
+                   placeholder="Username"
+                   [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+            <div *ngIf="submitted && f.username.errors"
+                 class="invalid-feedback">
+              <div *ngIf="f.username.errors.required">Username is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputProfileUrl">Profile Picture</label>
+            <input formControlName="profileUrl"
+                   type="text"
+                   class="form-control"
+                   id="inputProfileUrl"
+                   placeholder="Profile Picture">
+          </div>
+          <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input formControlName="password"
+                   type="password"
+                   class="form-control"
+                   id="inputPassword"
+                   placeholder="Password"
+                   [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+            <div *ngIf="submitted && f.password.errors"
+                 class="invalid-feedback">
+              <div *ngIf="f.password.errors.required">Password is required</div>
+              <div *ngIf="f.password.errors.minlength">Password must be at least 3 characters</div>
+            </div>
+          </div>
+          <div class="text-center">
+            <button class="btn">Register</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

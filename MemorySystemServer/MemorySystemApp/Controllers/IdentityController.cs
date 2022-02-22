@@ -17,19 +17,6 @@
         }
 
         [HttpPost]
-        [Route(nameof(Register))]
-        public async Task<ActionResult> Register(RegisterUserRequestModel model)
-        {
-            var result = await this.identityService.Register(model);
-            if (result.IfHaveError)
-            {
-                return this.BadRequest(result.ErrorMessage);
-            }
-
-            return this.Ok();
-        }
-
-        [HttpPost]
         [Route(nameof(Login))]
         public async Task<ActionResult> Login(LoginUserRequestModel model)
         {

@@ -1,4 +1,4 @@
-﻿namespace MemorySystemApp.Models.Identity
+﻿namespace MemorySystemApp.Models.Users
 {
     using System.ComponentModel.DataAnnotations;
 

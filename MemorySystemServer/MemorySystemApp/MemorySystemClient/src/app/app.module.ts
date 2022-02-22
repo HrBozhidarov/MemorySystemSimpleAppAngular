@@ -28,6 +28,7 @@ import { MemoryDetailsComponent } from './components/memory/memory-details/memor
 import { MyMemoriesComponent } from './components/memory/my-memories/my-memories.component';
 
 import { MemoryService } from './services/memory/memory.service';
+import { UserService } from './services/users/user.service';
 import { ShareAuthService } from './share/services/share-auth-service';
 import { IdentityService } from './services/identity/identity.service';
 import { LocalStorageService } from './share/services/local-storage.service';
@@ -62,6 +63,7 @@ import { NonAuthorizedGuard } from './guards/nonAuthorized.guard';
     ShareAuthService,
     IdentityService,
     MemoryService,
+    UserService,
     LocalStorageService,
     AuthorizedGuard,
     NonAuthorizedGuard,

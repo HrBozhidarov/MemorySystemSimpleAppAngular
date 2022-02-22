@@ -9,14 +9,9 @@ import { URLS } from 'src/app/constants/constants';
 
 @Injectable()
 export class IdentityService {
-  private readonly registerUrl = URLS.DOMAIN_URL + 'identity/register';
   private readonly loginUrl = URLS.DOMAIN_URL + 'identity/login';
 
   constructor(private http: HttpClient, private localStorageService: LocalStorageService) { }
-
-  public register(payload: any): Observable<any> {
-    return this.http.post(this.registerUrl, payload);
-  }
 
   public login(payload: any): Observable<any> {
     return this.http.post(this.loginUrl, payload);
