@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
 
     this.identityService.login(this.loginForm.value).subscribe(
       result => {
-        this.identityService.saveToken(result.data.token);
+        this.localStorageService.setItem("token", result.data.token);
         this.localStorageService.setItem('user-profile-picture', result.data.profileUrl);
         this.localStorageService.setItem('role', result.data.role);
 

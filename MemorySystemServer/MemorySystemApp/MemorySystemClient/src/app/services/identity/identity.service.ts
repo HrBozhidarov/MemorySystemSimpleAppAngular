@@ -17,10 +17,6 @@ export class IdentityService {
     return this.http.post(this.loginUrl, payload);
   }
 
-  public saveToken(token: any) {
-    this.localStorageService.setItem("token", token);
-  }
-
   public logout() {
     this.localStorageService.removeItem("token");
   }
