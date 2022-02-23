@@ -2,10 +2,9 @@
 {
     using System.Reflection;
 
+    using MemorySystem.Data;
     using MemorySystem.Infrastructure.AutomapperSettings;
-    using MemorySystemApp.Data;
     using MemorySystemApp.Infrastructures;
-
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.EntityFrameworkCore;

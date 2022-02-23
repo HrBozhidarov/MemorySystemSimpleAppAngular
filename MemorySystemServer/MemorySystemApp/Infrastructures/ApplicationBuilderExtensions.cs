@@ -3,9 +3,8 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using MemorySystemApp.Data;
-    using MemorySystemApp.Data.Models;
-
+    using MemorySystem.Data;
+    using MemorySystem.Data.Models;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;

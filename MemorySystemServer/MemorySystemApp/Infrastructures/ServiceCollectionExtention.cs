@@ -2,12 +2,10 @@
 {
     using System.Text;
 
-    using MemorySystemApp.Data;
-    using MemorySystemApp.Data.Models;
-    using MemorySystemApp.Services.Identity;
-    using MemorySystemApp.Services.Users;
+    using MemorySystem.Data;
+    using MemorySystem.Data.Models;
+    using MemorySystem.Services;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.IdentityModel.Tokens;
 
