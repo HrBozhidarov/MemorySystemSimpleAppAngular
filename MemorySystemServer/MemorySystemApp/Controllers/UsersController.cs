@@ -23,6 +23,13 @@
             this.userService = userService;
         }
 
+        public async Task<IActionResult> EditProfile()
+        {
+            this.User.GetUserId();
+
+            return Ok();
+        }
+
         [HttpPost]
         [Route(nameof(Register))]
         public async Task<ActionResult> Register(RegisterUserRequestModel model)
