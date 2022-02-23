@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MemorySystemApp", "MemorySystemApp\MemorySystemApp.csproj", "{FF28C14B-D1BE-4FF5-AFF7-A7EBD4ED5808}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MemorySystem.App", "MemorySystemApp\MemorySystem.App.csproj", "{FF28C14B-D1BE-4FF5-AFF7-A7EBD4ED5808}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemorySystem", "MemorySystem\MemorySystem.csproj", "{A68352E4-DE67-4F1E-9C8F-DACE2CF7D53C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MemorySystem.Common", "MemorySystem\MemorySystem.Common.csproj", "{A68352E4-DE67-4F1E-9C8F-DACE2CF7D53C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

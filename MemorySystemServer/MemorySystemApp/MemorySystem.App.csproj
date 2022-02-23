@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MemorySystem\MemorySystem.csproj" />
+    <ProjectReference Include="..\MemorySystem\MemorySystem.Common.csproj" />
   </ItemGroup>
 
 </Project>
