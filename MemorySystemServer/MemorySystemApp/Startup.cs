@@ -2,8 +2,10 @@
 {
     using System.Reflection;
 
+    using MemorySystem.Controllers;
     using MemorySystem.Data;
     using MemorySystem.Infrastructure.AutomapperSettings;
+    using MemorySystem.Services;
     using MemorySystemApp.Infrastructures;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -32,7 +34,8 @@
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            AutoMapperConfig.RegisterMappings(Assembly.GetExecutingAssembly());
+            AutoMapperConfig.RegisterMappings(Assembly.GetAssembly(typeof(Result)));
+            AutoMapperConfig.RegisterMappings(Assembly.GetAssembly(typeof(ApiController)));
 
             app.UseRouting()
                 .UseCors(opt => opt
