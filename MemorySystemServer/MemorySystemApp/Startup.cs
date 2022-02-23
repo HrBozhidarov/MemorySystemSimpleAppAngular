@@ -28,7 +28,6 @@
                 .AddIdentity()
                 .JwtAuthentication(services.GetApplicationSettings(this.Configuration))
                 .AddServices()
-                .AddCors()
                 .AddControllers();
         }
 
@@ -36,14 +35,11 @@
         {
             AutoMapperConfig.RegisterMappings(Assembly.GetExecutingAssembly());
 
-            //app.UseHttpsRedirection();
-
-            app.UseCors(opt => opt
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
-
             app.UseRouting()
+                .UseCors(opt => opt
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader())
                 .UseAuthentication()
                 .UseAuthorization()
                 .UseEndpoints(endpoints => endpoints.MapControllers())

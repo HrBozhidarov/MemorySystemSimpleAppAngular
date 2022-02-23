@@ -3,7 +3,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AccountService } from '../../../services/account/account.service';
+import { UserService } from '../../../services/users/user.service';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +16,7 @@ export class EditProfileComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private accountService: AccountService,
+    private userService: UserService,
     private toastrService: ToastrService,
     private router: Router) { }
 
@@ -40,7 +40,7 @@ export class EditProfileComponent implements OnInit {
       return;
     }
 
-    this.accountService.register(this.editForm.value).subscribe(
+    this.userService.register(this.editForm.value).subscribe(
       () => {
         this.router.navigate(['/home']);
       },

@@ -10,14 +10,14 @@
     using MemorySystemApp.Models.Users;
     using Microsoft.AspNetCore.Identity;
 
-    public class UsersService : IUserService
+    public class UserService : IUserService
     {
         private const string DefaultProfileUrl = "https://cdn1.iconfinder.com/data/icons/technology-devices-2/100/Profile-512.png";
 
         private readonly UserManager<User> userManager;
         private readonly RoleManager<Role> roleManager;
 
-        public UsersService(UserManager<User> userManager, RoleManager<Role> roleManager)
+        public UserService(UserManager<User> userManager, RoleManager<Role> roleManager)
         {
             this.userManager = userManager;
             this.roleManager = roleManager;

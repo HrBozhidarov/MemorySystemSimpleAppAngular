@@ -7,7 +7,7 @@ import { URLS } from 'src/app/constants/constants';
 
 @Injectable()
 export class UserService {
-  private readonly registerUrl = URLS.DOMAIN_URL + 'user/register';
+  private readonly registerUrl = URLS.DOMAIN_URL + 'users/register';
 
   constructor(private http: HttpClient) { }
 

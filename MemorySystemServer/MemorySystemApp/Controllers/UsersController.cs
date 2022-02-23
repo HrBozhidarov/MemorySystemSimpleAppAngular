@@ -12,7 +12,6 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    [Authorize]
     public class UsersController : ApiController
     {
         private readonly IUserService userService;
@@ -37,6 +36,7 @@
             return this.Ok();
         }
 
+        [Authorize]
         [HttpGet]
         [Route(nameof(MyMemories))]
         public async Task<ActionResult<Result<IEnumerable<PictureModel>>>> MyMemories(string category)

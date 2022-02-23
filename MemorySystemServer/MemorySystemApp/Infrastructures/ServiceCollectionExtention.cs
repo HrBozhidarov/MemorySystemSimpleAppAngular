@@ -5,7 +5,7 @@
     using MemorySystemApp.Data;
     using MemorySystemApp.Data.Models;
     using MemorySystemApp.Services.Identity;
-
+    using MemorySystemApp.Services.Users;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +16,7 @@
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddTransient<IIdentityService, IdentityService>();
+            services.AddTransient<IUserService, UserService>();
             services.AddTransient<IPicturesService, PicturesService>();
 
             return services;
