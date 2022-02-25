@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { MemoryService } from 'src/app/services/memory/memory.service';
 import { LocalStorageService } from 'src/app/share/services/local-storage.service';
+import { ACCOUNT_KEYS } from '../../../constants/constants';
 
 @Component({
   selector: 'app-my-memories',
@@ -10,7 +11,7 @@ import { LocalStorageService } from 'src/app/share/services/local-storage.servic
   styleUrls: ['./my-memories.component.css'],
 })
 export class MyMemoriesComponent implements OnInit {
-  public pictures: any[] = [];
+  public memories: any[] = [];
   public page: number = 1;
 
   constructor(
@@ -19,29 +20,29 @@ export class MyMemoriesComponent implements OnInit {
     private toastrService: ToastrService) { }
 
   ngOnInit(): void {
-    let key = this.localStorageService.getItem('my-memory-category-key');
+    let key = this.localStorageService.getItem(ACCOUNT_KEYS.MEMORY_CATEGORY);
     if (!key) {
       key = 'All';
 
-      this.localStorageService.setItem('my-memory-category-key', key);
+      this.localStorageService.setItem(ACCOUNT_KEYS.MEMORY_CATEGORY, key);
     }
 
-    this.memoryService.myMemories(key).subscribe(data => this.pictures = data.data);
+    this.memoryService.myMemories(key).subscribe(data => this.memories = data.data);
   }
 
-  public setLike(picture: any) {
-    if (!picture || picture.IsLikedFromCurrentUser) {
+  public setLike(memory: any) {
+    if (!memory || memory.IsLikedFromCurrentUser) {
       return;
     }
 
-    const likes = picture.likes;
+    const likes = memory.likes;
 
-    this.memoryService.likePicture(picture.id).subscribe((data: any) => {
-      picture.likes = data.data;
-      if (picture.likes > likes) {
-        picture.isLikedFromCurrentUser = true;
+    this.memoryService.likeMemory(memory.id).subscribe((data: any) => {
+      memory.likes = data.data;
+      if (memory.likes > likes) {
+        memory.isLikedFromCurrentUser = true;
       } else {
-        picture.isLikedFromCurrentUser = false;
+        memory.isLikedFromCurrentUser = false;
       }
     },
       error => {
@@ -49,7 +50,7 @@ export class MyMemoriesComponent implements OnInit {
       });
   }
 
-  public getPictureByCategory(category: string) {
-    this.memoryService.myMemories(category).subscribe(data => this.pictures = data.data);
+  public getMemoryByCategory(category: string) {
+    this.memoryService.myMemories(category).subscribe(data => this.memories = data.data);
   }
 }

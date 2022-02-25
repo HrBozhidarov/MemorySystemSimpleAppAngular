@@ -9,7 +9,6 @@
     using MemorySystem.Data.Models;
     using MemorySystem.Services.Models;
     using MemorySystemApp;
-    using MemorySystemApp.Models.Identity;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Options;

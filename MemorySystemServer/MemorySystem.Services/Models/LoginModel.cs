@@ -1,4 +1,4 @@
-﻿namespace MemorySystemApp.Models.Identity
+﻿namespace MemorySystem.Services.Models
 {
     public class LoginModel
     {

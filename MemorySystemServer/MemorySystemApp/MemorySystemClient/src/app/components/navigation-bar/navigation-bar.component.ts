@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ShareAuthService } from 'src/app/share/services/share-auth-service';
 import { LocalStorageService } from 'src/app/share/services/local-storage.service';
 import { AccountService } from '../../services/account/account.service';
+import { ACCOUNT_KEYS } from '../../constants/constants';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -22,7 +23,7 @@ export class NavigationBarComponent {
     public router: Router) { 
     this.shareAuthService.data.subscribe(data => {
       this.isLogin = data;
-      this.userProfileUrl = this.localStorageService.getItem('user-profile-picture');
+      this.userProfileUrl = this.localStorageService.getItem(ACCOUNT_KEYS.USER_PROFILE_PICTURE);
     });
   }
 

@@ -1,10 +1,10 @@
-﻿namespace MemorySystemApp.Models.Pictures
+﻿namespace MemorySystem.Services.Models
 {
     using System.ComponentModel.DataAnnotations;
     using MemorySystem.Data.Models;
     using MemorySystem.Infrastructure.AutomapperSettings;
 
-    public class PictureRequestModel : IMapTo<Picture>
+    public class MemoryRequestModel : IMapTo<Memory>
     {
         public CategoryType Type { get; set; }
 

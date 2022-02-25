@@ -1,46 +1,47 @@
 <div class="row">
-    <div class="col-md-3">
-        <app-memory-categories (categoryChange)="getPictureByCategory($event)"></app-memory-categories>
-    </div>
-    <div class="col-md-9">
-        <div class="section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12"></div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3 shadow-lg bg-white rounded"
-                        *ngFor="let picture of pictures | paginate: { itemsPerPage: 8, currentPage: page }">
-                        <div class="card profile-card-2 wrimagecard wrimagecard-topimage h-100">
-                            <div class="card-img-block">
-                                <img class="img-fluid" src="{{picture.url}}" alt="Card image cap" />
-                            </div>
-                            <div class="card-body pt-5">
-                                <img src="{{picture.ownerProfilePicture}}" alt="profile-image" class="profile" />
-                                <h5 class="card-title">Published By: {{picture.owner}}</h5>
-                                <div class="icon-block">
-                                    <a (click)="setLike(picture)"> 
-                                        <i [ngClass]="{ 'tumb': picture.isLikedFromCurrentUser }" 
-                                           class="fa fa-thumbs-up"></i><span id="likes">
-                                        </span>{{picture.likes}}</a>
-                                    <a href="#"> <i class="fa fa-heart"></i><span id="favorites"></span></a>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 p-3">
-                                        <button class="btn btn-primary mt-2 p-1">View Details</button>
-                                    </div>
-                                    <div class="col-md-6 p-3">
-                                        <button class="btn btn-primary mt-2 p-1">View Profile</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="col-md-3">
+    <app-memory-categories (categoryChange)="getMemoryByCategory($event)"></app-memory-categories>
+  </div>
+  <div class="col-md-9">
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12"></div>
         </div>
+        <div class="row">
+          <div class="col-md-3 shadow-lg bg-white rounded"
+               *ngFor="let memory of memories | paginate: { itemsPerPage: 8, currentPage: page }">
+            <div class="card profile-card-2 wrimagecard wrimagecard-topimage h-100">
+              <div class="card-img-block">
+                <img class="img-fluid" src="{{memory.url}}" alt="Card image cap" />
+              </div>
+              <div class="card-body pt-5">
+                <img src="{{memory.ownerProfilePicture}}" alt="profile-image" class="profile" />
+                <h5 class="card-title">Published By: {{memory.owner}}</h5>
+                <div class="icon-block">
+                  <a (click)="setLike(memory)">
+                    <i [ngClass]="{ 'tumb': memory.isLikedFromCurrentUser }"
+                       class="fa fa-thumbs-up"></i><span id="likes">
+                    </span>{{memory.likes}}
+                  </a>
+                  <a href="#"> <i class="fa fa-heart"></i><span id="favorites"></span></a>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 p-3">
+                    <button class="btn btn-primary mt-2 p-1">View Details</button>
+                  </div>
+                  <div class="col-md-6 p-3">
+                    <button class="btn btn-primary mt-2 p-1">View Profile</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 <div>
-    <pagination-controls (pageChange)='page=$event'></pagination-controls>
+  <pagination-controls (pageChange)='page=$event'></pagination-controls>
 </div>

@@ -3,9 +3,9 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class Picture
+    public class Memory
     {
-        public Picture()
+        public Memory()
         {
             this.Comments = new HashSet<Comment>();
             this.Likes = new HashSet<Like>();

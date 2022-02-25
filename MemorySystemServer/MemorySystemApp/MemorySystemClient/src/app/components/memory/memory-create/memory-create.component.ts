@@ -49,7 +49,7 @@ export class MemoryCreateComponent implements OnInit {
 
     this.memoryService.create(this.memoryForm.value).subscribe(
       data => {
-        this.toastrService.success('Successfully created picture.');
+        this.toastrService.success('Successfully created memory.');
 
         this.router.navigate(['/home']);
       },

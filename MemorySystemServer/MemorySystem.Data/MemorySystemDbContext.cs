@@ -21,7 +21,7 @@
         {
         }
 
-        public DbSet<Picture> Pictures { get; set; }
+        public DbSet<Memory> Memories { get; set; }
 
         public DbSet<Category> Categories { get; set; }
 
@@ -35,7 +35,7 @@
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<Like>().HasKey(e => new { e.UserId, e.PictureId });
+            builder.Entity<Like>().HasKey(e => new { e.UserId, e.MemoryId });
 
             builder.Entity<Like>()
                 .HasOne(e => e.User)
@@ -44,12 +44,12 @@
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<Like>()
-                .HasOne(e => e.Picture)
+                .HasOne(e => e.Memory)
                 .WithMany(e => e.Likes)
-                .HasForeignKey(e => e.PictureId)
+                .HasForeignKey(e => e.MemoryId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Entity<Favorite>().HasKey(e => new { e.UserId, e.PictureId });
+            builder.Entity<Favorite>().HasKey(e => new { e.UserId, e.MemoryId });
 
             builder.Entity<Favorite>()
                 .HasOne(e => e.User)
@@ -58,9 +58,9 @@
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<Favorite>()
-                .HasOne(e => e.Picture)
+                .HasOne(e => e.Memory)
                 .WithMany(e => e.Favorites)
-                .HasForeignKey(e => e.PictureId)
+                .HasForeignKey(e => e.MemoryId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<Comment>()
@@ -70,14 +70,14 @@
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<Comment>()
-                .HasOne(e => e.Picture)
+                .HasOne(e => e.Memory)
                 .WithMany(e => e.Comments)
-                .HasForeignKey(e => e.PictureId)
+                .HasForeignKey(e => e.MemoryId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Entity<Picture>()
+            builder.Entity<Memory>()
                 .HasOne(e => e.Owner)
-                .WithMany(e => e.Pictures)
+                .WithMany(e => e.Memories)
                 .HasForeignKey(e => e.OwnerId)
                 .OnDelete(DeleteBehavior.Restrict);
 

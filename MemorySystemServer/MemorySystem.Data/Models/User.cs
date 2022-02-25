@@ -9,7 +9,7 @@
         public User()
         {
             this.Comments = new HashSet<Comment>();
-            this.Pictures = new HashSet<Picture>();
+            this.Memories = new HashSet<Memory>();
             this.Likes = new HashSet<Like>();
             this.Favorites = new HashSet<Favorite>();
             this.UserRoles = new HashSet<UserRole>();
@@ -19,7 +19,7 @@
 
         public IEnumerable<Comment> Comments { get; set; }
 
-        public IEnumerable<Picture> Pictures { get; set; }
+        public IEnumerable<Memory> Memories { get; set; }
 
         public IEnumerable<Like> Likes { get; set; }
 

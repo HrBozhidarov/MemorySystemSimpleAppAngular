@@ -8,9 +8,9 @@
 
         public string Content { get; set; }
 
-        public int PictureId { get; set; }
+        public int MemoryId { get; set; }
 
-        public Picture Picture { get; set; }
+        public Memory Memory { get; set; }
 
         [Required]
         public string OwnerId { get; set; }

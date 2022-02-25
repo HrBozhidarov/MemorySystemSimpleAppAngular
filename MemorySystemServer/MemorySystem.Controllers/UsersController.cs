@@ -12,11 +12,11 @@
     public class UsersController : BaseResponseController
     {
         private readonly IUserService userService;
-        private readonly IPicturesService picturesService;
+        private readonly IMemoryService memoryService;
 
-        public UsersController(IPicturesService picturesService, IUserService userService)
+        public UsersController(IMemoryService memoryService, IUserService userService)
         {
-            this.picturesService = picturesService;
+            this.memoryService = memoryService;
             this.userService = userService;
         }
 
@@ -36,6 +36,6 @@
         [HttpGet]
         [Route(nameof(MyMemories))]
         public async Task<IActionResult> MyMemories(string category)
-            => this.ResponseResult(await this.picturesService.GetOwnPictures(this.User.GetUserId(), category));
+            => this.ResponseResult(await this.memoryService.GetOwnMemories(this.User.GetUserId(), category));
     }
 }

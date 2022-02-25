@@ -2,7 +2,6 @@
 {
     using System.Threading.Tasks;
     using MemorySystem.Services.Models;
-    using MemorySystemApp.Models.Identity;
 
     public interface IAccountService
     {
