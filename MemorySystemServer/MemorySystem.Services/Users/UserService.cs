@@ -5,6 +5,7 @@
     using System.Threading.Tasks;
 
     using AutoMapper;
+
     using MemorySystem.Data.Models;
     using MemorySystem.Services.Models;
     using MemorySystemApp;
@@ -23,12 +24,12 @@
             this.roleManager = roleManager;
         }
 
-        public async Task<Result<User>> Register(RegisterUserModel model)
+        public async Task<Result> Register(RegisterUserModel model)
         {
             var errorResult = await this.ValidateRegisterModelAsync(model);
             if (errorResult.IfHasError)
             {
-                return Result<User>.Error(errorResult.ErrorMessage);
+                return Result.Error(errorResult.ErrorMessage);
             }
 
             await this.CreateUserRoleIfDoesNotExistsAsync();
@@ -39,12 +40,12 @@
             var identityResult = await this.userManager.CreateAsync(user, model.Password);
             if (!identityResult.Succeeded)
             {
-                return Result<User>.Error(identityResult.Errors.Select(e => e.Description).First());
+                return Result.Error(identityResult.Errors.Select(e => e.Description).First());
             }
 
             await this.userManager.AddToRoleAsync(user, Constant.User);
 
-            return Result<User>.Success(user);
+            return Result.Success;
         }
 
         private async Task<Result> ValidateRegisterModelAsync(RegisterUserModel model)

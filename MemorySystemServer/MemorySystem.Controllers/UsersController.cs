@@ -1,18 +1,15 @@
 ﻿namespace MemorySystem.Controllers
 {
-    using System.Collections.Generic;
     using System.Threading.Tasks;
     using MemorySystem.Common.Infrastructure.AutomapperSettings;
     using MemorySystem.Controllers.Infrastructure.Extentions;
-    using MemorySystem.Data.Models;
     using MemorySystem.Services;
     using MemorySystem.Services.Models;
-    using MemorySystemApp.Models.Pictures;
     using MemorySystemApp.Models.Users;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    public class UsersController : ApiController
+    public class UsersController : ResponseController
     {
         private readonly IUserService userService;
         private readonly IPicturesService picturesService;
@@ -32,29 +29,13 @@
 
         [HttpPost]
         [Route(nameof(Register))]
-        public async Task<ActionResult> Register(RegisterUserRequestModel model)
-        {
-            var result = await this.userService.Register(Mapper.Map<RegisterUserModel>(model));
-            if (result.IfHasError)
-            {
-                return this.BadRequest(result.ErrorMessage);
-            }
-
-            return this.Ok();
-        }
+        public async Task<IActionResult> Register(RegisterUserRequestModel model)
+            => this.ResponseResult(await this.userService.Register(Mapper.Map<RegisterUserModel>(model)));
 
         [Authorize]
         [HttpGet]
         [Route(nameof(MyMemories))]
-        public async Task<ActionResult<Result<IEnumerable<PictureModel>>>> MyMemories(string category)
-        {
-            var pictures = await this.picturesService.GetOwnPictures(this.User.GetUserId(), category);
-            if (pictures.IfHasError)
-            {
-                return this.NotFound(pictures);
-            }
-
-            return pictures;
-        }
+        public async Task<IActionResult> MyMemories(string category)
+            => this.ResponseResult(await this.picturesService.GetOwnPictures(this.User.GetUserId(), category));
     }
 }

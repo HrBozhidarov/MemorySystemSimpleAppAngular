@@ -61,8 +61,7 @@
             }
             else
             {
-                picture.Likes.Add(
-                new Like
+                picture.Likes.Add(new Like
                 {
                     UserId = userId,
                     PictureId = id,

@@ -26,21 +26,13 @@
         [HttpPost]
         [Route(nameof(Like))]
         [Authorize]
-        public async Task<ActionResult<Result<bool>>> Like(int id)
-        {
-            var result = await this.picturesService.LikeAsync(id, this.User.GetUserId());
-            if (result.IfHasError)
-            {
-                return this.BadRequest(result);
-            }
-
-            return this.Ok(result);
-        }
+        public async Task<IActionResult> Like(int id)
+            => this.ResponseResult(await this.picturesService.LikeAsync(id, this.User.GetUserId()));
 
         // [Authorize]
         [HttpGet]
         [Route(nameof(Details))]
-        public async Task<ActionResult> Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
             await this.picturesService.Test();
             return this.Ok();
