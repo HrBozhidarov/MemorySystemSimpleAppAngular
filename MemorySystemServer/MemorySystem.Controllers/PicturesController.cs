@@ -8,7 +8,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     // [Authorize]
-    public class PicturesController : ApiController
+    public class PicturesController : ResponseController
     {
         private readonly IPicturesService picturesService;
 
@@ -20,18 +20,8 @@
         [HttpPost]
         [Route(nameof(Create))]
         [Authorize]
-        public ActionResult Create(PictureRequestModel model)
-        {
-            var userId = this.User.GetUserId();
-
-            var isCreated = this.picturesService.Create(model, userId);
-            if (!isCreated)
-            {
-                return this.BadRequest();
-            }
-
-            return this.Ok();
-        }
+        public async Task<IActionResult> Create(PictureRequestModel model)
+            => this.ResponseResult(await this.picturesService.Create(model, this.User.GetUserId()));
 
         [HttpPost]
         [Route(nameof(Like))]
@@ -39,7 +29,7 @@
         public async Task<ActionResult<Result<bool>>> Like(int id)
         {
             var result = await this.picturesService.LikeAsync(id, this.User.GetUserId());
-            if (result.IfHaveError)
+            if (result.IfHasError)
             {
                 return this.BadRequest(result);
             }

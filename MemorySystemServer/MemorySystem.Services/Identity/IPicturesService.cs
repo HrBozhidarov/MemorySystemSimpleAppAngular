@@ -7,7 +7,7 @@
 
     public interface IPicturesService
     {
-        bool Create(PictureRequestModel model, string userId);
+        Task<Result> Create(PictureRequestModel model, string userId);
 
         Task<Result<IEnumerable<PictureModel>>> GetOwnPictures(string userId, string category);
 

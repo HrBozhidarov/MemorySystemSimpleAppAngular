@@ -11,7 +11,7 @@
         public string ErrorMessage { get; protected set; }
 
         [JsonIgnore]
-        public bool IfHaveError => !string.IsNullOrWhiteSpace(this.ErrorMessage);
+        public bool IfHasError => !string.IsNullOrWhiteSpace(this.ErrorMessage);
 
         public static Result Error(string errorMessage)
         {

@@ -35,7 +35,7 @@
         public async Task<ActionResult> Register(RegisterUserRequestModel model)
         {
             var result = await this.userService.Register(Mapper.Map<RegisterUserModel>(model));
-            if (result.IfHaveError)
+            if (result.IfHasError)
             {
                 return this.BadRequest(result.ErrorMessage);
             }
@@ -49,7 +49,7 @@
         public async Task<ActionResult<Result<IEnumerable<PictureModel>>>> MyMemories(string category)
         {
             var pictures = await this.picturesService.GetOwnPictures(this.User.GetUserId(), category);
-            if (pictures.IfHaveError)
+            if (pictures.IfHasError)
             {
                 return this.NotFound(pictures);
             }

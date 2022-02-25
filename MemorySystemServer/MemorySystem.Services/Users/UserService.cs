@@ -26,7 +26,7 @@
         public async Task<Result<User>> Register(RegisterUserModel model)
         {
             var errorResult = await this.ValidateRegisterModelAsync(model);
-            if (errorResult.IfHaveError)
+            if (errorResult.IfHasError)
             {
                 return Result<User>.Error(errorResult.ErrorMessage);
             }

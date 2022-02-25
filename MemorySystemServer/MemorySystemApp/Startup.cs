@@ -2,6 +2,7 @@
 {
     using System.Reflection;
 
+    using MemorySystem.App.Infrastructures.Middlewares;
     using MemorySystem.Controllers;
     using MemorySystem.Data;
     using MemorySystem.Infrastructure.AutomapperSettings;
@@ -29,11 +30,16 @@
                 .AddIdentity()
                 .JwtAuthentication(services.GetApplicationSettings(this.Configuration))
                 .AddServices()
-                .AddControllers();
+                .AddControllers()
+                .AddNewtonsoftJson();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //AutoMapperConfig.RegisterMappings(
+            //    typeof(Result).GetTypeInfo().Assembly,
+            //    typeof(ApiController).GetTypeInfo().Assembly);
+
             AutoMapperConfig.RegisterMappings(Assembly.GetAssembly(typeof(Result)));
             AutoMapperConfig.RegisterMappings(Assembly.GetAssembly(typeof(ApiController)));
 
@@ -44,6 +50,7 @@
                     .AllowAnyHeader())
                 .UseAuthentication()
                 .UseAuthorization()
+                .UseMiddleware<ErrorHandlerMiddleware>()
                 .UseEndpoints(endpoints => endpoints.MapControllers())
                 .Initialize();
         }

@@ -23,17 +23,17 @@
             this.db = db;
         }
 
-        public bool Create(PictureRequestModel model, string userId)
+        public async Task<Result> Create(PictureRequestModel model, string userId)
         {
             if (model == null)
             {
                 throw new NullReferenceException(nameof(model));
             }
 
-            var category = this.db.Categories.FirstOrDefault(x => x.Type == model.Type);
+            var category = this.db.Categories.FirstOrDefaultAsync(x => x.Type == model.Type);
             if (category == null)
             {
-                return false;
+                return Result.Error($"Category of this type {model.Type} does not exists");
             }
 
             var entity = Mapper.Map<Picture>(model);
@@ -42,9 +42,9 @@
 
             this.db.Pictures.Add(entity);
 
-            this.db.SaveChanges();
+            await this.db.SaveChangesAsync();
 
-            return true;
+            return Result.Success;
         }
 
         public async Task<Result<int>> LikeAsync(int id, string userId)
