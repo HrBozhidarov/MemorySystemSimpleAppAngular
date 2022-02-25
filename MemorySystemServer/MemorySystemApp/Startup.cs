@@ -43,12 +43,9 @@
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //AutoMapperConfig.RegisterMappings(
-            //    typeof(Result).GetTypeInfo().Assembly,
-            //    typeof(ApiController).GetTypeInfo().Assembly);
-
-            AutoMapperConfig.RegisterMappings(Assembly.GetAssembly(typeof(Result)));
-            AutoMapperConfig.RegisterMappings(Assembly.GetAssembly(typeof(ApiController)));
+            AutoMapperConfig.RegisterMappings(
+                typeof(Result).GetTypeInfo().Assembly,
+                typeof(ApiController).GetTypeInfo().Assembly);
 
             app.UseRouting()
                 .UseCors(opt => opt
