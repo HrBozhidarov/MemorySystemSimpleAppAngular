@@ -30,7 +30,7 @@
                 throw new NullReferenceException(nameof(model));
             }
 
-            var category = this.db.Categories.FirstOrDefaultAsync(x => x.Type == model.Type);
+            var category = await this.db.Categories.FirstOrDefaultAsync(x => x.Type == model.Type);
             if (category == null)
             {
                 return Result.Error($"Category of this type {model.Type} does not exists");

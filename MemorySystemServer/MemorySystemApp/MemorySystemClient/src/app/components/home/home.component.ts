@@ -10,9 +10,9 @@ import { URLS } from 'src/app/constants/constants';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private identityService: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
-    this.identityService.get(URLS.DOMAIN_URL+'home').subscribe(data => data);
+    this.httpClient.get(URLS.DOMAIN_URL + 'home').subscribe(data => data);
   }
 }

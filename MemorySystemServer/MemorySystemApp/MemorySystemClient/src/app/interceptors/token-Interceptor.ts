@@ -3,22 +3,22 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/c
 
 import { Observable } from 'rxjs';
 
-import { IdentityService } from '../services/identity/identity.service';
 import { ShareAuthService } from '../share/services/share-auth-service';
+import { AccountService } from '../services/account/account.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-    constructor(
-        private identityService: IdentityService,
-        private shareAuthService: ShareAuthService) { }
+  constructor(
+    private accountService: AccountService,
+    private shareAuthService: ShareAuthService) { }
 
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const cloneRequest = req.clone({
-            headers: req.headers.set('Authorization', `Bearer ${this.identityService.getToken()}`),
-        })
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const cloneRequest = req.clone({
+      headers: req.headers.set('Authorization', `Bearer ${this.accountService.getToken()}`),
+    })
 
-        this.shareAuthService.updatedDataSelection(this.identityService.isLoggedIn());
+    this.shareAuthService.updatedDataSelection(this.accountService.isLoggedIn());
 
-        return next.handle(cloneRequest);
-    }
+    return next.handle(cloneRequest);
+  }
 }

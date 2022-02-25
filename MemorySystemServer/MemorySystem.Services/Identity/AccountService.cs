@@ -15,13 +15,13 @@
     using Microsoft.Extensions.Options;
     using Microsoft.IdentityModel.Tokens;
 
-    public class IdentityService : IIdentityService
+    public class AccountService : IAccountService
     {
         private readonly MemorySystemDbContext db;
         private readonly UserManager<User> userManager;
         private readonly ApplicationSettings applicationSettings;
 
-        public IdentityService(
+        public AccountService(
             MemorySystemDbContext db,
             UserManager<User> userManager,
             IOptions<ApplicationSettings> options)

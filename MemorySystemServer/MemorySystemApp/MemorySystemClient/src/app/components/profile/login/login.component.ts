@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { ToastrService } from 'ngx-toastr';
 
-import { IdentityService } from 'src/app/services/identity/identity.service';
-import { LocalStorageService } from 'src/app/share/services/local-storage.service';
+import { AccountService } from '../../../services/account/account.service';
 
 @Component({
   selector: 'app-login',
@@ -17,10 +17,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private identityService: IdentityService,
-    private localStorageService: LocalStorageService,
-    private toastrService: ToastrService,
-    private router: Router) { }
+    private accountService: AccountService,
+    private router: Router,
+    private toastrService: ToastrService) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -38,16 +37,8 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    this.identityService.login(this.loginForm.value).subscribe(
-      result => {
-        this.localStorageService.setItem("token", result.data.token);
-        this.localStorageService.setItem('user-profile-picture', result.data.profileUrl);
-        this.localStorageService.setItem('role', result.data.role);
-
-        this.router.navigate(['/home']);
-      },
-      error => {
-        this.toastrService.error(error?.error?.errorMessage);
-      })
+    this.accountService.login(this.loginForm.value).subscribe(
+      _ => this.router.navigate(['/home']),
+      error => this.toastrService.error(error?.error?.errorMessage));
   }
 }

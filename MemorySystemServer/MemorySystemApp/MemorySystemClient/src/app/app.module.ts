@@ -30,7 +30,7 @@ import { MyMemoriesComponent } from './components/memory/my-memories/my-memories
 import { MemoryService } from './services/memory/memory.service';
 import { UserService } from './services/users/user.service';
 import { ShareAuthService } from './share/services/share-auth-service';
-import { IdentityService } from './services/identity/identity.service';
+import { AccountService } from './services/account/account.service';
 import { LocalStorageService } from './share/services/local-storage.service';
 import { MemoryCategoriesComponent } from './components/memory/memory-categories/memory-categories.component';
 import { NonAuthorizedGuard } from './guards/nonAuthorized.guard';
@@ -61,7 +61,7 @@ import { NonAuthorizedGuard } from './guards/nonAuthorized.guard';
   ],
   providers: [
     ShareAuthService,
-    IdentityService,
+    AccountService,
     MemoryService,
     UserService,
     LocalStorageService,

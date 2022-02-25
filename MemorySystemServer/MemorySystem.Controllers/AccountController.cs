@@ -7,18 +7,18 @@
     using MemorySystemApp.Models.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    public class IdentityController : ResponseController
+    public class AccountController : ResponseController
     {
-        private readonly IIdentityService identityService;
+        private readonly IAccountService accountService;
 
-        public IdentityController(IIdentityService identityService)
+        public AccountController(IAccountService accountService)
         {
-            this.identityService = identityService;
+            this.accountService = accountService;
         }
 
         [HttpPost]
         [Route(nameof(Login))]
         public async Task<IActionResult> Login(LoginUserRequestModel model)
-            => this.ResponseResult(await this.identityService.Login(Mapper.Map<LoginUserModel>(model)));
+            => this.ResponseResult(await this.accountService.Login(Mapper.Map<LoginUserModel>(model)));
     }
 }

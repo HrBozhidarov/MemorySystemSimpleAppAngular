@@ -13,7 +13,7 @@
     {
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
-            services.AddTransient<IIdentityService, IdentityService>();
+            services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IPicturesService, PicturesService>();
 
