@@ -9,7 +9,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    public class UsersController : ResponseController
+    public class UsersController : BaseResponseController
     {
         private readonly IUserService userService;
         private readonly IPicturesService picturesService;

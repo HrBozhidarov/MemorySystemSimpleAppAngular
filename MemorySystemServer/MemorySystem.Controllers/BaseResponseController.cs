@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MemorySystem.Controllers
 {
-    public class ResponseController : ApiController
+    public class BaseResponseController : ApiController
     {
         public IActionResult ResponseResult<TResult>(Result<TResult> result)
         {

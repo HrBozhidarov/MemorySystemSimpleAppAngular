@@ -8,7 +8,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     // [Authorize]
-    public class PicturesController : ResponseController
+    public class PicturesController : BaseResponseController
     {
         private readonly IPicturesService picturesService;
 

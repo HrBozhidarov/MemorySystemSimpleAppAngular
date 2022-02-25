@@ -7,7 +7,7 @@
     using MemorySystemApp.Models.Identity;
     using Microsoft.AspNetCore.Mvc;
 
-    public class AccountController : ResponseController
+    public class AccountController : BaseResponseController
     {
         private readonly IAccountService accountService;
 
