@@ -13,6 +13,8 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Serialization;
 
     public class Startup
     {
@@ -32,6 +34,11 @@
                 .AddServices()
                 .AddControllers()
                 .AddNewtonsoftJson();
+
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver(),
+            };
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
