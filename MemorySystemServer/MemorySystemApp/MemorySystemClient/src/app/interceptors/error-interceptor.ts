@@ -14,26 +14,28 @@ import { AccountService } from "../services/account/account.service";
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-    constructor(
-        private router: Router, 
-        private shareAuthService: ShareAuthService,
-        private accountService: AccountService,
-        private toastrService: ToastrService) {}
+  constructor(
+    private router: Router,
+    private shareAuthService: ShareAuthService,
+    private accountService: AccountService,
+    private toastrService: ToastrService) { }
 
-    intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        return next.handle(request)
-            .pipe(catchError((error: HttpErrorResponse) => {
-                if (error.status === 401) {
-                    this.accountService.logout();
-                    this.shareAuthService.updatedDataSelection(this.accountService.isLoggedIn());
-                    this.router.navigate(['/login']);
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    return next.handle(request)
+      .pipe(catchError((error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          this.accountService.logout();
+          this.shareAuthService.updatedDataSelection(this.accountService.isLoggedIn());
+          this.router.navigate(['/login']);
 
-                    this.toastrService.error('Login In Your Account');
-                } else if(error.status === 403) {
-                  this.toastrService.error('You don`t have permissions!');
-                }
+          this.toastrService.error('Login In Your Account');
+        } else if (error.status === 403) {
+          this.toastrService.error('You don`t have permissions!');
+        } else if (error.status === 500) {
+          this.toastrService.error(error.error?.errorMessage)
+        }
 
-                return throwError(error);
-            }))
-    }
+        return throwError(error);
+      }))
+  }
 }
