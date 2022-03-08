@@ -1,6 +1,7 @@
 ﻿namespace MemorySystem.Services.Models
 {
     using System.ComponentModel.DataAnnotations;
+
     using MemorySystem.Data.Models;
     using MemorySystem.Infrastructure.AutomapperSettings;
 

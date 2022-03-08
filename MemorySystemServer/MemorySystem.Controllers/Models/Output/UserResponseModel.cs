@@ -1,8 +1,8 @@
-﻿using MemorySystem.Infrastructure.AutomapperSettings;
-using MemorySystem.Services.Models;
-
-namespace MemorySystem.Controllers.Models.Output
+﻿namespace MemorySystem.Controllers.Models.Output
 {
+    using MemorySystem.Infrastructure.AutomapperSettings;
+    using MemorySystem.Services.Models;
+
     public class UserResponseModel : IMapFrom<UserModel>
     {
         public string Username { get; set; }

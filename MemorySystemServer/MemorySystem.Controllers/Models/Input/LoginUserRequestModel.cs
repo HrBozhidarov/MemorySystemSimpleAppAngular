@@ -1,8 +1,8 @@
-﻿using MemorySystem.Infrastructure.AutomapperSettings;
-using MemorySystem.Services.Models;
-
-namespace MemorySystemApp.Models.Identity
+﻿namespace MemorySystemApp.Models.Identity
 {
+    using MemorySystem.Infrastructure.AutomapperSettings;
+    using MemorySystem.Services.Models;
+
     public class LoginUserRequestModel : IMapTo<BaseUserModel>
     {
         public string Username { get; set; }

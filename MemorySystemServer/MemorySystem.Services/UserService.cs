@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Transactions;
+
     using AutoMapper;
     using MemorySystem.Data;
     using MemorySystem.Data.Models;
@@ -53,9 +54,9 @@
 
             try
             {
-                var token = await userManager.GeneratePasswordResetTokenAsync(user);
+                var token = await this.userManager.GeneratePasswordResetTokenAsync(user);
 
-                var result = await userManager.ResetPasswordAsync(user, token, model.Password);
+                var result = await this.userManager.ResetPasswordAsync(user, token, model.Password);
 
                 user.Email = model.Email;
                 user.UserName = model.Username;

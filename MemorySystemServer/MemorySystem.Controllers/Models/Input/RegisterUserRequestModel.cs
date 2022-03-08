@@ -1,6 +1,7 @@
 ﻿namespace MemorySystemApp.Models.Users
 {
     using System.ComponentModel.DataAnnotations;
+
     using MemorySystem.Infrastructure.AutomapperSettings;
     using MemorySystem.Services.Models;
 
