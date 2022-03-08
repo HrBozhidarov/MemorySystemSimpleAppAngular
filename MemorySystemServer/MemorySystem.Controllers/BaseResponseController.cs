@@ -1,11 +1,11 @@
-﻿using MemorySystem.Common;
-using MemorySystem.Common.Infrastructure.AutomapperSettings;
-using MemorySystem.Controllers.Models.Output;
-using MemorySystem.Services;
-using Microsoft.AspNetCore.Mvc;
-
-namespace MemorySystem.Controllers
+﻿namespace MemorySystem.Controllers
 {
+    using MemorySystem.Common;
+    using MemorySystem.Common.Infrastructure.AutomapperSettings;
+    using MemorySystem.Controllers.Models.Output;
+    using MemorySystem.Services;
+    using Microsoft.AspNetCore.Mvc;
+
     public class BaseResponseController : ApiController
     {
         public IActionResult ResponseResult<TModel, TResult>(Result<TModel> result)

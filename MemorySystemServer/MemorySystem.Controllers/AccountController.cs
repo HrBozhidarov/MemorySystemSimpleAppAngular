@@ -1,6 +1,7 @@
 ﻿namespace MemorySystem.Controllers
 {
     using System.Threading.Tasks;
+
     using MemorySystem.Common.Infrastructure.AutomapperSettings;
     using MemorySystem.Controllers.Models.Output;
     using MemorySystem.Services;
