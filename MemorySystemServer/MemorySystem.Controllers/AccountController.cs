@@ -20,7 +20,7 @@
 
         [HttpPost]
         [Route(nameof(Login))]
-        public async Task<IActionResult> Login(LoginUserRequestModel model)
-            => this.ResponseResult<LoginModel, LogedUserDataModel>(await this.accountService.Login(Mapper.Map<BaseUserModel>(model)));
+        public async Task<IActionResult> Login(LoginUserModel model)
+            => this.ResponseResult<LoginModel, LogedUserDataResponseModel>(await this.accountService.Login(Mapper.Map<BaseUserModel>(model)));
     }
 }

@@ -3,7 +3,7 @@
     using MemorySystem.Infrastructure.AutomapperSettings;
     using MemorySystem.Services.Models;
 
-    public class MyMemoryModel : IMapFrom<MemoryModel>
+    public class MyMemoryResponseModel : IMapFrom<MemoryModel>
     {
         public int Id { get; set; }
 

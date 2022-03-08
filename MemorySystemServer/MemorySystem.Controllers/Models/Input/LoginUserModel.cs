@@ -3,7 +3,7 @@
     using MemorySystem.Infrastructure.AutomapperSettings;
     using MemorySystem.Services.Models;
 
-    public class LoginUserRequestModel : IMapTo<BaseUserModel>
+    public class LoginUserModel : IMapTo<BaseUserModel>
     {
         public string Username { get; set; }
 

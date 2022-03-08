@@ -25,7 +25,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditProfile(RegisterUserRequestModel model) =>
+        public async Task<IActionResult> EditProfile(RegisterUserModel model) =>
             this.ResponseResult(await this.userService.EditProfileAsync(this.User.GetUserId(), Mapper.Map<UserModel>(model)));
 
         [HttpGet]
@@ -35,14 +35,14 @@
         [AllowAnonymous]
         [HttpPost]
         [Route(nameof(CreateProfile))]
-        public async Task<IActionResult> CreateProfile(RegisterUserRequestModel model)
+        public async Task<IActionResult> CreateProfile(RegisterUserModel model)
             => this.ResponseResult(await this.userService.CreateProfileAsync(Mapper.Map<UserModel>(model)));
 
         // CreateModels and see what will be the structure
         [HttpGet]
         [Route(nameof(MyMemories))]
         public async Task<IActionResult> MyMemories(string category)
-            => this.ResponseResult<IEnumerable<MemoryModel>, IEnumerable<MyMemoryModel>>(
+            => this.ResponseResult<IEnumerable<MemoryModel>, IEnumerable<MyMemoryResponseModel>>(
                 await this.memoryService.GetOwnMemories(this.User.GetUserId(), category));
     }
 }
