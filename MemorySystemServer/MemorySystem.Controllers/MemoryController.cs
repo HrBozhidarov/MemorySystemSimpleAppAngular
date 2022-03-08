@@ -27,7 +27,7 @@
         [Route(nameof(Like))]
         [Authorize]
         public async Task<IActionResult> Like(int id)
-            => this.ResponseResult(await this.memoryService.LikeAsync(id, this.User.GetUserId()));
+            => this.ResponseResult<int, int>(await this.memoryService.LikeAsync(id, this.User.GetUserId()));
 
         // [Authorize]
         [HttpGet]

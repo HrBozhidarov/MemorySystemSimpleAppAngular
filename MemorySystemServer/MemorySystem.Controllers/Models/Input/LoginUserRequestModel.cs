@@ -3,7 +3,7 @@ using MemorySystem.Services.Models;
 
 namespace MemorySystemApp.Models.Identity
 {
-    public class LoginUserRequestModel : IMapTo<LoginUserModel>
+    public class LoginUserRequestModel : IMapTo<BaseUserModel>
     {
         public string Username { get; set; }
 

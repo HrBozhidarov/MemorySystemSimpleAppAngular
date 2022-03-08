@@ -6,12 +6,12 @@ import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../../../services/users/user.service';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'create-profile',
+  templateUrl: './create-profile.component.html',
+  styleUrls: ['./create-profile.component.css']
 })
-export class RegisterComponent implements OnInit {
-  public registerForm: FormGroup;
+export class CreateProfileComponent implements OnInit {
+  public from: FormGroup;
   public submitted: boolean = false;
 
   constructor(
@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.registerForm = this.fb.group({
+    this.from = this.fb.group({
       username: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(3)]],
@@ -29,16 +29,16 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  get f() { return this.registerForm.controls; }
+  get f() { return this.from.controls; }
 
   public onRegister() {
     this.submitted = true;
 
-    if (this.registerForm.invalid) {
+    if (this.from.invalid) {
       return;
     }
 
-    this.userService.register(this.registerForm.value).subscribe(
+    this.userService.create(this.from.value).subscribe(
       () => {
         this.router.navigate(['/login']);
       },

@@ -8,7 +8,7 @@ import { URLS } from 'src/app/constants/constants';
 @Injectable()
 export class MemoryService {
   private readonly createUrl = URLS.DOMAIN_URL + 'memory/create';
-  private readonly myMemoriesUrl = URLS.DOMAIN_URL + 'users/myMemories';
+  private readonly myMemoriesUrl = URLS.DOMAIN_URL + 'user/myMemories';
   private readonly likeMemoryUrl = URLS.DOMAIN_URL + 'memory/like?id=';
 
   constructor(private http: HttpClient) { }

@@ -4,7 +4,7 @@
     using MemorySystem.Infrastructure.AutomapperSettings;
     using MemorySystem.Services.Models;
 
-    public class RegisterUserRequestModel : IMapTo<RegisterUserModel>
+    public class RegisterUserRequestModel : IMapTo<UserModel>
     {
         [Required]
         public string Username { get; set; }

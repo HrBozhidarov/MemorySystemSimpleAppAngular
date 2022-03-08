@@ -8,7 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/user/login/login.component';
-import { RegisterComponent } from './components/user/register/register.component';
+import { CreateProfileComponent } from './components/user/createProfile/create-profile.component';
+import { EditProfileComponent } from './components/user/editProfile/edit-profile.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -39,7 +40,8 @@ import { NonAuthorizedGuard } from './guards/nonAuthorized.guard';
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent,
+    CreateProfileComponent,
+    EditProfileComponent,
     NavigationBarComponent,
     HomeComponent,
     FooterComponent,

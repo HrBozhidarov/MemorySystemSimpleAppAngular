@@ -1,9 +1,9 @@
-﻿using MemorySystem.Data.Models;
-using MemorySystem.Infrastructure.AutomapperSettings;
+﻿using MemorySystem.Infrastructure.AutomapperSettings;
+using MemorySystem.Services.Models;
 
-namespace MemorySystem.Services.Models
+namespace MemorySystem.Controllers.Models.Output
 {
-    public class RegisterUserModel : IMapTo<User>
+    public class UserResponseModel : IMapFrom<UserModel>
     {
         public string Username { get; set; }
 

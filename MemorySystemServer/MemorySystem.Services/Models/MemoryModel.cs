@@ -7,7 +7,7 @@
     using MemorySystem.Infrastructure.AutomapperSettings;
 
     // Think about for this model?
-    public class MemoryModel : IMapFrom<Memory>, IHaveCustomMappings
+    public class MemoryModel : IHaveCustomMappings
     {
         public int Id { get; set; }
 

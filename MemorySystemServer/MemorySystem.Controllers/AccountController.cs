@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
     using MemorySystem.Common.Infrastructure.AutomapperSettings;
+    using MemorySystem.Controllers.Models.Output;
     using MemorySystem.Services;
     using MemorySystem.Services.Models;
     using MemorySystemApp.Models.Identity;
@@ -19,6 +20,6 @@
         [HttpPost]
         [Route(nameof(Login))]
         public async Task<IActionResult> Login(LoginUserRequestModel model)
-            => this.ResponseResult(await this.accountService.Login(Mapper.Map<LoginUserModel>(model)));
+            => this.ResponseResult<LoginModel, LogedUserDataModel>(await this.accountService.Login(Mapper.Map<BaseUserModel>(model)));
     }
 }

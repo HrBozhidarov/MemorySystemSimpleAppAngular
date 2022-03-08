@@ -5,6 +5,6 @@
 
     public interface IAccountService
     {
-        public Task<Result<LoginModel>> Login(LoginUserModel model);
+        public Task<Result<LoginModel>> Login(BaseUserModel model);
     }
 }

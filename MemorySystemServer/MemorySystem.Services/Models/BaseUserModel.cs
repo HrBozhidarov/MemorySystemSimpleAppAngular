@@ -1,6 +1,6 @@
 ﻿namespace MemorySystem.Services.Models
 {
-    public class LoginUserModel
+    public class BaseUserModel
     {
         public string Username { get; set; }
 

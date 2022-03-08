@@ -30,7 +30,7 @@
             this.applicationSettings = options.Value;
         }
 
-        public async Task<Result<LoginModel>> Login(LoginUserModel model)
+        public async Task<Result<LoginModel>> Login(BaseUserModel model)
         {
             if (model == null)
             {

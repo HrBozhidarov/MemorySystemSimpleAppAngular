@@ -8,7 +8,7 @@ namespace MemorySystem.Controllers
 {
     public class BaseResponseController : ApiController
     {
-        public IActionResult ResponseResult<TResult>(Result<TResult> result)
+        public IActionResult ResponseResult<TModel, TResult>(Result<TModel> result)
         {
             if (result.IfHasError)
             {

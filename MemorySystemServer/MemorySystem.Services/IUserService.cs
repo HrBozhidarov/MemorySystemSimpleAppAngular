@@ -5,6 +5,10 @@
 
     public interface IUserService
     {
-        Task<Result> Register(RegisterUserModel model);
+        Task<Result> CreateProfileAsync(UserModel model);
+
+        Task<Result> EditProfileAsync(string userId, UserModel model);
+
+        Task<Result<UserModel>> ProfileAsync(string userId);
     }
 }

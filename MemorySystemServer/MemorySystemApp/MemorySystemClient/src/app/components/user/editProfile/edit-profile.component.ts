@@ -6,12 +6,12 @@ import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../../../services/users/user.service';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'edit-profile',
+  templateUrl: './edit-profile.component.html',
+  styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit {
-  public editForm: FormGroup;
+  public form: FormGroup;
   public submitted: boolean = false;
 
   constructor(
@@ -21,27 +21,28 @@ export class EditProfileComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-
-
-    this.editForm = this.fb.group({
-      username: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(3)]],
-      profileUrl: ['']
+    this.userService.profile().subscribe(user => {
+      this.form = this.fb.group({
+        username: [user.username, Validators.required],
+        email: [user.email, Validators.required],
+        password: [user.password, [Validators.required, Validators.minLength(3)]],
+        profileUrl: [user.profileUrl]
+      })
     });
   }
 
-  get f() { return this.editForm.controls; }
+  get f() { return this.form.controls; }
 
   public onRegister() {
     this.submitted = true;
 
-    if (this.editForm.invalid) {
+    if (this.form.invalid) {
       return;
     }
 
-    this.userService.register(this.editForm.value).subscribe(
+    this.userService.edit(this.form.value).subscribe(
       () => {
+        this.toastrService.success('You successfully update your profile!');
         this.router.navigate(['/home']);
       },
       error => {
