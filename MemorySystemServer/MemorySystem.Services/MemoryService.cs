@@ -23,7 +23,7 @@
             this.db = db;
         }
 
-        public async Task<Result> Create(MemoryRequestModel model, string userId)
+        public async Task<Result> Create(CreateMemoryModel model, string userId)
         {
             if (model == null)
             {
@@ -105,7 +105,7 @@
             return Result<IEnumerable<PictureModel>>.SuccessWith(pictures);
         }*/
 
-        public async Task<Result<IEnumerable<MemoryModel>>> GetOwnMemories(string userId, string category)
+        public async Task<Result<IEnumerable<MemoryModel>>> UserMemories(string userId, string category)
         {
             Enum.TryParse(category, out CategoryType categoryType);
             Expression<Func<Memory, bool>> expr = p => p.Category.Type == categoryType && p.Owner.Id == userId;

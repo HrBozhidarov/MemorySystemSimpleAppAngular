@@ -31,7 +31,7 @@
             this.applicationSettings = options.Value;
         }
 
-        public async Task<Result<LoginModel>> Login(BaseUserModel model)
+        public async Task<Result<UserLogedModel>> Login(BaseUserModel model)
         {
             if (model == null)
             {
@@ -41,17 +41,17 @@
             var user = await this.userManager.FindByNameAsync(model.Username);
             if (user == null)
             {
-                return Result<LoginModel>.Error("Username or password are invalid");
+                return Result<UserLogedModel>.Error("Username or password are invalid");
             }
 
             var validationResult = await this.userManager.CheckPasswordAsync(user, model.Password);
             if (!validationResult)
             {
-                return Result<LoginModel>.Error("Username or password are invalid");
+                return Result<UserLogedModel>.Error("Username or password are invalid");
             }
 
-            return Result<LoginModel>.Success(
-                new LoginModel
+            return Result<UserLogedModel>.Success(
+                new UserLogedModel
                 {
                     ProfileUrl = user.ProfileUrl,
                     Token = this.GenerateJwtToken(user),

@@ -27,7 +27,7 @@ export class MyMemoriesComponent implements OnInit {
       this.localStorageService.setItem(ACCOUNT_KEYS.MEMORY_CATEGORY, key);
     }
 
-    this.memoryService.myMemories(key).subscribe(data => this.memories = data.data);
+    this.memoryService.userMemories(key).subscribe(data => this.memories = data.data);
   }
 
   public setLike(memory: any) {
@@ -51,6 +51,6 @@ export class MyMemoriesComponent implements OnInit {
   }
 
   public getMemoryByCategory(category: string) {
-    this.memoryService.myMemories(category).subscribe(data => this.memories = data.data);
+    this.memoryService.userMemories(category).subscribe(data => this.memories = data.data);
   }
 }

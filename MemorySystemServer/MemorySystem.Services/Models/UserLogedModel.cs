@@ -1,6 +1,6 @@
 ﻿namespace MemorySystem.Services.Models
 {
-    public class LoginModel
+    public class UserLogedModel
     {
         public string Token { get; set; }
 

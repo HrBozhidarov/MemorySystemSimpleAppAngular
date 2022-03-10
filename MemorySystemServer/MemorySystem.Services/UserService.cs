@@ -30,7 +30,7 @@
             this.db = db;
         }
 
-        public async Task<Result<UserModel>> ProfileAsync(string userId)
+        public async Task<Result<UserModel>> DetailsAsync(string userId)
         {
             var user = await this.db.Users.Where(u => u.Id == userId).To<UserModel>().FirstOrDefaultAsync();
             if (user == null)
@@ -42,7 +42,7 @@
         }
 
         // Only for testing scenario
-        public async Task<Result> EditProfileAsync(string userId, UserModel model)
+        public async Task<Result> UpdateAsync(string userId, UserModel model)
         {
             var user = await this.userManager.FindByIdAsync(userId);
             if (user == null)
@@ -76,7 +76,7 @@
             return Result.Success;
         }
 
-        public async Task<Result> CreateProfileAsync(UserModel model)
+        public async Task<Result> CreateAsync(UserModel model)
         {
             var errorResult = await this.ValidateRegisterModelAsync(model);
             if (errorResult.IfHasError)

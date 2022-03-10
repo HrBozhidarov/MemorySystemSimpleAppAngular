@@ -53,8 +53,6 @@ export class MemoryCreateComponent implements OnInit {
 
         this.router.navigate(['/home']);
       },
-      error => {
-        this.toastrService.error(error?.error?.errorMessage);
-      });
+      error => this.toastrService.error(error?.error?.errorMessage));
   }
 }

@@ -7,21 +7,21 @@ import { URLS } from 'src/app/constants/constants';
 
 @Injectable()
 export class UserService {
-  private readonly createProfileUrl = URLS.DOMAIN_URL + 'user/createProfile';
-  private readonly editProfileUrl = URLS.DOMAIN_URL + 'user/editProfile';
-  private readonly profileUrl = URLS.DOMAIN_URL + 'user/profile';
+  private readonly createUrl = URLS.DOMAIN_URL + 'user/create';
+  private readonly updateUrl = URLS.DOMAIN_URL + 'user/update';
+  private readonly detailsUrl = URLS.DOMAIN_URL + 'user/details';
 
   constructor(private http: HttpClient) { }
 
   public create(payload: any): Observable<any> {
-    return this.http.post(this.createProfileUrl, payload);
+    return this.http.post(this.createUrl, payload);
   }
 
-  public profile(): Observable<any> {
-    return this.http.get(this.profileUrl);
+  public details(): Observable<any> {
+    return this.http.get(this.detailsUrl);
   }
 
-  public edit(payload: any): Observable<any> {
-    return this.http.post(this.editProfileUrl, payload);
+  public update(payload: any): Observable<any> {
+    return this.http.post(this.updateUrl, payload);
   }
 }

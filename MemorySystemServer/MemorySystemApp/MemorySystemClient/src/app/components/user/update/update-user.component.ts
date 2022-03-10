@@ -7,10 +7,10 @@ import { UserService } from '../../../services/users/user.service';
 
 @Component({
   selector: 'edit-profile',
-  templateUrl: './edit-profile.component.html',
-  styleUrls: ['./edit-profile.component.css']
+  templateUrl: './update-user.component.html',
+  styleUrls: ['./update-user.component.css']
 })
-export class EditProfileComponent implements OnInit {
+export class UpdateUserComponent implements OnInit {
   public form: FormGroup;
   public submitted: boolean = false;
 
@@ -21,7 +21,7 @@ export class EditProfileComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.userService.profile().subscribe(user => {
+    this.userService.details().subscribe(user => {
       this.form = this.fb.group({
         username: [user.username, Validators.required],
         email: [user.email, Validators.required],
@@ -40,13 +40,11 @@ export class EditProfileComponent implements OnInit {
       return;
     }
 
-    this.userService.edit(this.form.value).subscribe(
+    this.userService.update(this.form.value).subscribe(
       () => {
         this.toastrService.success('You successfully update your profile!');
         this.router.navigate(['/home']);
       },
-      error => {
-        this.toastrService.error(error?.error?.errorMessage);
-      })
+      error => this.toastrService.error(error?.error?.errorMessage))
   }
 }

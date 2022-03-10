@@ -7,9 +7,9 @@
 
     public interface IMemoryService
     {
-        Task<Result> Create(MemoryRequestModel model, string userId);
+        Task<Result> Create(CreateMemoryModel model, string userId);
 
-        Task<Result<IEnumerable<MemoryModel>>> GetOwnMemories(string userId, string category);
+        Task<Result<IEnumerable<MemoryModel>>> UserMemories(string userId, string category);
 
         Task<Result<IEnumerable<MemoryModel>>> GetUserMemories(string currentUserId, string userId);
 

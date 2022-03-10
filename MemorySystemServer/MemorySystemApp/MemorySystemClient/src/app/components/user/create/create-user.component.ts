@@ -7,10 +7,10 @@ import { UserService } from '../../../services/users/user.service';
 
 @Component({
   selector: 'create-profile',
-  templateUrl: './create-profile.component.html',
-  styleUrls: ['./create-profile.component.css']
+  templateUrl: './create-user.component.html',
+  styleUrls: ['./create-user.component.css']
 })
-export class CreateProfileComponent implements OnInit {
+export class CreateUserComponent implements OnInit {
   public from: FormGroup;
   public submitted: boolean = false;
 
@@ -39,11 +39,7 @@ export class CreateProfileComponent implements OnInit {
     }
 
     this.userService.create(this.from.value).subscribe(
-      () => {
-        this.router.navigate(['/login']);
-      },
-      error => {
-        this.toastrService.error(error?.error?.errorMessage);
-      })
+      () => this.router.navigate(['/login-user']),
+      error => this.toastrService.error(error?.error?.errorMessage))
   }
 }

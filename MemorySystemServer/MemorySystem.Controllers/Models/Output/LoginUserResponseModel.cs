@@ -3,7 +3,7 @@
     using MemorySystem.Infrastructure.AutomapperSettings;
     using MemorySystem.Services.Models;
 
-    public class LogedUserDataResponseModel : IMapFrom<LoginModel>
+    public class LoginUserResponseModel : IMapFrom<UserLogedModel>
     {
         public string Token { get; set; }
 

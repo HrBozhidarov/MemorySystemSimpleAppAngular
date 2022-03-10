@@ -3,10 +3,10 @@
     using System.Threading.Tasks;
 
     using MemorySystem.Common.Infrastructure.AutomapperSettings;
+    using MemorySystem.Controllers.Models.Input;
     using MemorySystem.Controllers.Models.Output;
     using MemorySystem.Services;
     using MemorySystem.Services.Models;
-    using MemorySystemApp.Models.Identity;
     using Microsoft.AspNetCore.Mvc;
 
     public class AccountController : BaseResponseController
@@ -21,6 +21,6 @@
         [HttpPost]
         [Route(nameof(Login))]
         public async Task<IActionResult> Login(LoginUserModel model)
-            => this.ResponseResult<LoginModel, LogedUserDataResponseModel>(await this.accountService.Login(Mapper.Map<BaseUserModel>(model)));
+            => this.ResponseResult<UserLogedModel, LoginUserResponseModel>(await this.accountService.Login(Mapper.Map<BaseUserModel>(model)));
     }
 }

@@ -8,7 +8,7 @@ import { URLS } from 'src/app/constants/constants';
 @Injectable()
 export class MemoryService {
   private readonly createUrl = URLS.DOMAIN_URL + 'memory/create';
-  private readonly myMemoriesUrl = URLS.DOMAIN_URL + 'user/myMemories';
+  private readonly userMemoriesUrl = URLS.DOMAIN_URL + 'memory/userMemories';
   private readonly likeMemoryUrl = URLS.DOMAIN_URL + 'memory/like?id=';
 
   constructor(private http: HttpClient) { }
@@ -17,11 +17,11 @@ export class MemoryService {
     return this.http.post(this.createUrl, payload);
   }
 
-  public myMemories(category: string): Observable<any> {
+  public userMemories(category: string): Observable<any> {
     let params = new HttpParams();
     params = params.append('category', category);
 
-    return this.http.get(`${this.myMemoriesUrl}`, { params: params });
+    return this.http.get(`${this.userMemoriesUrl}`, { params: params });
   }
 
   public likeMemory(id: number) {

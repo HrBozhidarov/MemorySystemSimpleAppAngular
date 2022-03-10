@@ -8,10 +8,10 @@ import { AccountService } from '../../../services/account/account.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './login-user.component.html',
+  styleUrls: ['./login-user.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginUserComponent implements OnInit {
   public loginForm: FormGroup;
   public submitted: boolean = false;
 

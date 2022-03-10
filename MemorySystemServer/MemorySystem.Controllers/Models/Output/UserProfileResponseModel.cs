@@ -3,7 +3,7 @@
     using MemorySystem.Infrastructure.AutomapperSettings;
     using MemorySystem.Services.Models;
 
-    public class UserResponseModel : IMapFrom<UserModel>
+    public class UserProfileResponseModel : IMapFrom<UserModel>
     {
         public string Username { get; set; }
 
